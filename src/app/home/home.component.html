@@ -1,3 +1,32 @@
-<div *ngFor="let i of [].constructor(10)">
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, cum expedita in incidunt mollitia provident quia quidem velit voluptas voluptatem?</p>
-</div>
+<header>
+  <h1>WELCOME</h1>
+  <h4>Here comes cool quote about bikes</h4>
+
+  <form action="" [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="searchbar">
+    <!--      bike type-->
+    <mat-form-field appearance="fill">
+      <mat-label>Bike types</mat-label>
+      <mat-select formControlName="bikeTypes" multiple>
+        <mat-option *ngFor="let bike of mockBikesTypes" [value]="bike">{{bike}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!--      date-->
+    <mat-form-field appearance="fill">
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate formControlName="dateStart" placeholder="Start date">
+        <input matEndDate formControlName="dateEnd" placeholder="End date">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+
+      <mat-error *ngIf="searchForm.controls.dateStart.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+      <mat-error *ngIf="searchForm.controls.dateEnd.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!searchForm.valid">Search</button>
+
+  </form>
+</header>
+

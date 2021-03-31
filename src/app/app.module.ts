@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { LayoutHeaderComponent } from './shared/layout/layout-header/layout-header.component';
 import { LayoutFooterComponent } from './shared/layout/layout-footer/layout-footer.component';
 import { MaterialModule } from './shared/material.module';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MaterialModule } from './shared/material.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
