@@ -1,0 +1,153 @@
+[
+    {
+      "id": "01",
+      "picture": "pic",
+      "name": "MTB",
+      "description": "string",
+      "price": "25",
+      "type": "mountain",
+      "size": "M",
+      "bookedDates": ["Mar 10 2021-Mar 11 2021", "Apr 1 2021"]
+    },
+    {
+      "id": "02",
+      "picture": "pic",
+      "name": "string",
+      "description": "string",
+      "price": "20",
+      "type": "city",
+      "size": "M",
+      "bookedDates": []
+    },
+    {
+      "id": "03",
+      "picture": "pic",
+      "name": "My birthday",
+      "description": "Superbike for crazy riders",
+      "price": "35",
+      "type": "road",
+      "size": "L",
+      "bookedDates": ["May 19 2021"]
+    },
+    {
+      "id": "04",
+      "picture": "pic",
+      "name": "Kids",
+      "description": "Superbike for crazy riders",
+      "price": "35",
+      "type": "road",
+      "size": "L",
+      "bookedDates": []
+    },
+    {
+      "id": "05",
+      "picture": "pic",
+      "name": "Musk idea",
+      "description": "For lazy ppl",
+      "price": "10",
+      "type": "electric",
+      "size": "S",
+      "bookedDates": ["May 20 2021"]
+    },
+    {
+      "id": "06",
+      "picture": "pic",
+      "name": "MTB",
+      "description": "string",
+      "price": "25",
+      "type": "mountain",
+      "size": "M",
+      "bookedDates": ["Mar 10 2021-Mar 11 2021", "Apr 1 2021"]
+    },
+    {
+      "id": "07",
+      "picture": "pic",
+      "name": "string",
+      "description": "string",
+      "price": "20",
+      "type": "city",
+      "size": "M",
+      "bookedDates": []
+    },
+    {
+      "id": "08",
+      "picture": "pic",
+      "name": "My birthday",
+      "description": "Superbike for crazy riders",
+      "price": "35",
+      "type": "road",
+      "size": "L",
+      "bookedDates": ["May 19 2021"]
+    },
+    {
+      "id": "09",
+      "picture": "pic",
+      "name": "Kids",
+      "description": "Superbike for crazy riders",
+      "price": "35",
+      "type": "road",
+      "size": "L",
+      "bookedDates": []
+    },
+    {
+      "id": "10",
+      "picture": "pic",
+      "name": "Musk idea",
+      "description": "For lazy ppl",
+      "price": "10",
+      "type": "electric",
+      "size": "S",
+      "bookedDates": ["May 20 2021"]
+    },
+    {
+      "id": "11",
+      "picture": "pic",
+      "name": "MTB",
+      "description": "string",
+      "price": "25",
+      "type": "mountain",
+      "size": "M",
+      "bookedDates": ["Mar 10 2021-Mar 11 2021", "Apr 1 2021"]
+    },
+    {
+      "id": "12",
+      "picture": "pic",
+      "name": "string",
+      "description": "string",
+      "price": "20",
+      "type": "city",
+      "size": "M",
+      "bookedDates": []
+    },
+    {
+      "id": "13",
+      "picture": "pic",
+      "name": "My birthday",
+      "description": "Superbike for crazy riders",
+      "price": "35",
+      "type": "road",
+      "size": "L",
+      "bookedDates": ["May 19 2021"]
+    },
+    {
+      "id": "14",
+      "picture": "pic",
+      "name": "Kids",
+      "description": "Superbike for crazy riders",
+      "price": "35",
+      "type": "road",
+      "size": "L",
+      "bookedDates": []
+    },
+    {
+      "id": "15",
+      "picture": "pic",
+      "name": "Musk idea",
+      "description": "For lazy ppl",
+      "price": "10",
+      "type": "electric",
+      "size": "S",
+      "bookedDates": ["May 20 2021"]
+    }
+]
+

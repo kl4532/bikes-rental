@@ -1,0 +1,7 @@
+<div *ngIf="this.bikesService.$bikes | async as data">
+  <ul>
+    <li *ngFor="let bike of data">
+      {{bike.name}}, {{bike.price}}
+    </li>
+  </ul>
+</div>

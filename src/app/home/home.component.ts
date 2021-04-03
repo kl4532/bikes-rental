@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -14,12 +14,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({
-      bikeTypes: new FormControl(''),
+      bikeTypes: new FormControl('', Validators.required),
       dateStart: new FormControl('', Validators.required),
       dateEnd: new FormControl('', Validators.required)
     });
   }
-
   onSubmit() {
     console.warn(this.searchForm.value);
   }

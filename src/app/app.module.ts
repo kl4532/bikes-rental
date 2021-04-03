@@ -9,22 +9,32 @@ import { LayoutHeaderComponent } from './shared/layout/layout-header/layout-head
 import { LayoutFooterComponent } from './shared/layout/layout-footer/layout-footer.component';
 import { MaterialModule } from './shared/material.module';
 import {ReactiveFormsModule} from '@angular/forms';
+import { BikesOverviewComponent } from './bikes/overview/overview.component';
+import {HttpClientModule} from '@angular/common/http';
+import {environment} from '../environments/environment';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LayoutHeaderComponent,
-    LayoutFooterComponent
+    LayoutFooterComponent,
+    BikesOverviewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'API_URL',
+      useValue: environment.API_URL
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
