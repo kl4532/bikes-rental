@@ -10,6 +10,8 @@ export class HomeComponent implements OnInit {
 
   mockBikesTypes = ['road', 'mountain', 'city', 'electric', 'mtb'];
   searchForm: any;
+  formSubmited = false;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -20,7 +22,8 @@ export class HomeComponent implements OnInit {
     });
   }
   onSubmit() {
-    console.warn(this.searchForm.value);
+    console.warn(this.searchForm);
+    this.formSubmited = true;
   }
 
 }

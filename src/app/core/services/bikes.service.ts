@@ -4,9 +4,6 @@ import {Observable, throwError} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {Bike} from '../models/bike.model';
 
-class Bikes {
-}
-
 @Injectable({
   providedIn: 'root'
 })
@@ -16,11 +13,15 @@ export class BikesService {
 
   constructor(private http: HttpClient, @Inject('API_URL') private baseUrl: string) { }
 
-  $bikes = this.http.get<Bike[]>(this.mockUrl)
+  bikes$ = this.http.get<Bike[]>(this.mockUrl)
     .pipe(
       tap(data => console.log('bikes', data)),
       catchError(this.handleError)
     );
+
+  getBikes() {
+    return this.bikes$;
+  }
 
   private handleError(err: any): Observable<never> {
     let errorMessage: string;
