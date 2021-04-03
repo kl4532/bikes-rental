@@ -7,10 +7,10 @@ Website comes with at least two languages
 ### Home
 - search component with dropdown(bike type), calendar, and maybe total maximum price
 - selection always for specified period of time
-- search button redirects to available bikes
+- search button displays bikes below
 
-### Bikes
-- all available bikes in rental
+### Bike detail
+- see bike detail with rental form
 
 ### Contact
 
