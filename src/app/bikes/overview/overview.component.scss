@@ -1,0 +1,51 @@
+@import "src/app/shared/variables";
+
+$bike-sm: 80%;
+$bike-md: 30em;
+$bike-name: 2em;
+
+.bikes-container, .bike-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  @media only screen and (min-width: $screen-small) {
+    flex-direction: row;
+  }
+}
+
+.bike-container {
+  width: $bike-sm;
+  margin: 0.5em;
+
+  img {
+   width: 100%
+  }
+
+  .bike-info-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .bike-name {
+      display: flex;
+      align-items: center;
+      font-size: $bike-name;
+    }
+
+    .bike-price {
+      display: flex;
+      align-items: center;
+      background-color: indianred;
+      font-size: 2em;
+      color: $w;
+      padding: 0.4em;
+    }
+  }
+  @media only screen and (min-width: $screen-small) {
+    width: $bike-md;
+  }
+
+}

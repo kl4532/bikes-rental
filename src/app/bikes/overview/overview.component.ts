@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {BikesService} from '../../core/services/bikes.service';
 
 @Component({
@@ -7,6 +7,8 @@ import {BikesService} from '../../core/services/bikes.service';
   styleUrls: ['./overview.component.scss']
 })
 export class BikesOverviewComponent implements OnInit {
+
+  @Input() isSubmited = false;
 
   constructor(public bikesService: BikesService) { }
 

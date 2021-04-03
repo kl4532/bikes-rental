@@ -1,7 +1,17 @@
-<div *ngIf="this.bikesService.$bikes | async as data">
-  <ul>
-    <li *ngFor="let bike of data">
-      {{bike.name}}, {{bike.price}}
-    </li>
-  </ul>
+<div class="bikes-container" *ngIf="this.bikesService.bikes$ | async as bikes">
+  <ng-container *ngIf="isSubmited">
+    <div class="bike-container" *ngFor="let bike of bikes">
+      <img src="assets/bike-pic.jpg" alt="{{bike.name}} picture">
+
+      <div class="bike-info-container">
+        <span class="bike-price">${{bike.price}}</span>
+        <span class="bike-name">{{bike.name}}</span>
+        <span class="bike-reviews">
+        <p>Rating: {{bike.rating || 0}}</p>
+        <p>{{bike.reviews?.length || 0}} reviews</p>
+        </span>
+      </div>
+    </div>
+  </ng-container>
+
 </div>
