@@ -3,7 +3,7 @@
   <h4>Here comes cool quote about bikes</h4>
 
   <form action="" [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="searchbar">
-    <!--      bike type-->
+<!--      bike type-->
     <mat-form-field appearance="fill">
       <mat-label>Bike types</mat-label>
       <mat-select formControlName="bikeTypes" multiple>
@@ -11,10 +11,10 @@
       </mat-select>
     </mat-form-field>
 
-    <!--      date-->
+<!--      date-->
     <mat-form-field appearance="fill">
       <mat-label>Enter a date range</mat-label>
-      <mat-date-range-input [rangePicker]="picker">
+      <mat-date-range-input [rangePicker]="picker" [min]="minDate" [max]="maxDate">
         <input matStartDate formControlName="dateStart" placeholder="Start date">
         <input matEndDate formControlName="dateEnd" placeholder="End date">
       </mat-date-range-input>
@@ -24,6 +24,13 @@
       <mat-error *ngIf="searchForm.controls.dateStart.hasError('matStartDateInvalid')">Invalid start date</mat-error>
       <mat-error *ngIf="searchForm.controls.dateEnd.hasError('matEndDateInvalid')">Invalid end date</mat-error>
     </mat-form-field>
+
+<!--    price-->
+    <mat-form-field appearance="fill">
+      <mat-label>Maximum price</mat-label>
+      <input formControlName="maxPrice" type="number" matInput placeholder="Price/day" [min]="5">
+    </mat-form-field>
+
 
     <button mat-raised-button color="primary" type="submit" [disabled]="!searchForm.valid">Search</button>
 

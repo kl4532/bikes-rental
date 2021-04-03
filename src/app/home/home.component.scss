@@ -32,11 +32,11 @@ header {
     }
   }
 
-  @media only screen and (min-width: $screen-medium) and (max-width: $screen-large){
+  @media only screen and (min-width: $screen-medium){
     .searchbar {
       border-radius: 1.5em;
       flex-direction: row;
-      max-width: 600px;
+      max-width: 50em;
 
 
       .mat-form-field {
@@ -44,27 +44,9 @@ header {
       }
 
       button {
-        margin: 0;
+        margin: 0 0 0.5em;
       }
     }
-
-  }
-
-  @media only screen and (min-width: $screen-large){
-    .searchbar {
-      border-radius: 1.5em;
-      flex-direction: row;
-      max-width: 600px;
-
-      .mat-form-field {
-        width: auto;
-      }
-
-      button {
-        margin: 0;
-      }
-    }
-
 
   }
 
