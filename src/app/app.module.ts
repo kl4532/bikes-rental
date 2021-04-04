@@ -12,6 +12,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { BikesOverviewComponent } from './bikes/overview/overview.component';
 import {HttpClientModule} from '@angular/common/http';
 import {environment} from '../environments/environment';
+import { BikeDetailComponent } from './bikes/detail/detail.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {environment} from '../environments/environment';
     HomeComponent,
     LayoutHeaderComponent,
     LayoutFooterComponent,
-    BikesOverviewComponent
+    BikesOverviewComponent,
+    BikeDetailComponent
   ],
   imports: [
     BrowserModule,

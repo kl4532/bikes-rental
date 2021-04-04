@@ -9,4 +9,5 @@ export interface Bike {
   bookedDates: string[];
   reviews?: string[];
   rating?: number;
+  gear?: string[];
 }

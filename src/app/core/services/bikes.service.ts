@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
-import {catchError, tap} from 'rxjs/operators';
+import {catchError, map, tap} from 'rxjs/operators';
 import {Bike} from '../models/bike.model';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class BikesService {
 
   constructor(private http: HttpClient, @Inject('API_URL') private baseUrl: string) { }
 
-  bikes$ = this.http.get<Bike[]>(this.mockUrl)
+  bikes$ = this.http.get<any>(this.mockUrl)
     .pipe(
       tap(data => console.log('bikes', data)),
       catchError(this.handleError)
@@ -21,6 +21,14 @@ export class BikesService {
 
   getBikes() {
     return this.bikes$;
+  }
+
+  getBikeDetails(id: string): Observable<Bike> {
+    return this.bikes$
+      .pipe(
+        map(bikes => bikes.find((bike: Bike) => bike.id === id)),
+        catchError(this.handleError)
+      );
   }
 
   private handleError(err: any): Observable<never> {

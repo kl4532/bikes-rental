@@ -27,7 +27,8 @@
       "price": "35",
       "type": "road",
       "size": "L",
-      "bookedDates": ["May 19 2021"]
+      "bookedDates": ["May 19 2021"],
+      "gear": ["golden breaks", "x48 shimano Supreme gears", "leather seat"]
     },
     {
       "id": "04",
@@ -44,10 +45,12 @@
       "picture": "pic",
       "name": "Musk idea",
       "description": "For lazy ppl",
-      "price": "10",
+      "price": "50",
       "type": "electric",
       "size": "S",
-      "bookedDates": ["May 20 2021"]
+      "bookedDates": ["May 20 2021"],
+      "gear": ["silver breaks", "battery live ~ 100km economy ride"]
+
     },
     {
       "id": "06",

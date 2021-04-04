@@ -1,0 +1,55 @@
+<div *ngIf="(bike$ | async) as bike" class="container">
+  <div>
+    <img src="assets/bike-pic.jpg" alt="{{bike.name}}">
+    <p>{{bike.name}}</p>
+    <p>{{bike.description}}</p>
+    <h3>Technical</h3>
+    <ul *ngIf="bike.gear">
+      <li *ngFor="let item of bike.gear">{{item}}</li>
+    </ul>
+  </div>
+
+  <div>
+    <form action="" [formGroup]="rentForm">
+      <div class="dates">
+        <mat-form-field appearance="fill" class="date">
+          <mat-label>Pickup</mat-label>
+          <input matInput [matDatepicker]="picker1" formControlName="dateStart">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="time">
+          <mat-label>Time</mat-label>
+          <select matNativeControl required>
+            <option *ngFor="let h of rentalTime" value="h">{{h}}</option>
+          </select>
+        </mat-form-field>
+      </div>
+
+
+      <div class="dates">
+        <mat-form-field appearance="fill" class="date">
+          <mat-label>Return</mat-label>
+          <input matInput [matDatepicker]="picker2" formControlName="dateStart">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="time">
+          <mat-label>Time</mat-label>
+          <select matNativeControl required>
+            <option *ngFor="let h of rentalTime" value="h">{{h}}</option>
+          </select>
+        </mat-form-field>
+      </div>
+
+<!--      Validation messages here!-->
+      <h2>Total ...</h2>
+
+      <button mat-raised-button color="primary">Order</button>
+
+    </form>
+  </div>
+
+</div>
