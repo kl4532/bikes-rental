@@ -16,6 +16,7 @@ export class BikeDetailComponent implements OnInit {
   rentForm: any;
   minDate = new Date();
   maxDate = new Date();
+  totalPrice: any;
   rentalTime: string[] = [];
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -26,20 +27,21 @@ export class BikeDetailComponent implements OnInit {
       this.bike$ = this.bikesService.getBikeDetails(param.id);
     });
 
-    const maxPeriod = 60;
     this.minDate = new Date();
-    this.maxDate = new Date(new Date().getTime() + (maxPeriod * 24 * 60 * 60 * 1000));
 
+    console.log('sf', this.bikesService.searchForm);
     // fill hours
     this.fillTime(9.00, 18.00, 15);
 
 
     this.rentForm = new FormGroup({
       bikeTypes: new FormControl('', Validators.required),
-      dateStart: new FormControl('', Validators.required),
-      dateEnd: new FormControl('', Validators.required),
+      dateStart: new FormControl(this.bikesService.searchForm?.dateStart || this.minDate, Validators.required),
+      dateEnd: new FormControl(this.bikesService.searchForm?.dateEnd || this.minDate, Validators.required),
       price: new FormControl('')
     });
+
+    this.calcTotalPrice();
   }
 
   fillTime(min: number, max: number, step: number): void {
@@ -52,6 +54,11 @@ export class BikeDetailComponent implements OnInit {
       this.rentalTime.push(num);
       t = +t + step/60;
     }
+  }
+
+  calcTotalPrice(): void {
+    const timeSpan = (new Date(this.rentForm.value.dateEnd).getTime() - new Date(this.rentForm.value.dateStart).getTime())/(24*3600*1000) + 1;
+    this.bike$?.subscribe(bike => this.totalPrice = +timeSpan.toFixed() * bike.price);
   }
 
 }

@@ -3,7 +3,7 @@ export interface Bike {
   picture: string;
   name: string;
   description: string;
-  price: string;
+  price: number;
   type: string;
   size: string;
   bookedDates: string[];

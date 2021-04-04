@@ -14,7 +14,7 @@
       <div class="dates">
         <mat-form-field appearance="fill" class="date">
           <mat-label>Pickup</mat-label>
-          <input matInput [matDatepicker]="picker1" formControlName="dateStart">
+          <input (ngModelChange)="calcTotalPrice()" matInput [matDatepicker]="picker1" formControlName="dateStart">
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
@@ -31,7 +31,7 @@
       <div class="dates">
         <mat-form-field appearance="fill" class="date">
           <mat-label>Return</mat-label>
-          <input matInput [matDatepicker]="picker2" formControlName="dateStart">
+          <input (ngModelChange)="calcTotalPrice()" matInput [matDatepicker]="picker2" formControlName="dateEnd" [min]="rentForm.controls.dateStart.value">
           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
@@ -45,7 +45,8 @@
       </div>
 
 <!--      Validation messages here!-->
-      <h2>Total ...</h2>
+      <h2>Total ${{totalPrice}}</h2>
+
 
       <button mat-raised-button color="primary">Order</button>
 

@@ -9,6 +9,8 @@ import {BikesService} from '../../core/services/bikes.service';
 export class BikesOverviewComponent implements OnInit {
 
   @Input() isSubmited = false;
+  @Input() searchForm: any;
+
 
   constructor(public bikesService: BikesService) { }
 

@@ -14,7 +14,7 @@
 <!--      date-->
     <mat-form-field appearance="fill">
       <mat-label>Enter a date range</mat-label>
-      <mat-date-range-input [rangePicker]="picker" [min]="minDate" [max]="maxDate">
+      <mat-date-range-input [rangePicker]="picker" [min]="minDate">
         <input matStartDate formControlName="dateStart" placeholder="Start date">
         <input matEndDate formControlName="dateEnd" placeholder="End date">
       </mat-date-range-input>
@@ -28,7 +28,9 @@
 <!--    price-->
     <mat-form-field appearance="fill">
       <mat-label>Maximum price</mat-label>
-      <input formControlName="maxPrice" type="number" matInput placeholder="Price/day" [min]="5">
+      <mat-select formControlName="maxPrice">
+        <mat-option *ngFor="let bike of [10, 20, 30, 40]" [value]="bike">{{bike}}</mat-option>
+      </mat-select>
     </mat-form-field>
 
 
@@ -37,4 +39,5 @@
   </form>
 </header>
 
-<app-bikes-overview [isSubmited]="formSubmited"></app-bikes-overview>
+<app-bikes-overview [isSubmited]="formSubmited"
+                    [searchForm]="searchForm.value"></app-bikes-overview>

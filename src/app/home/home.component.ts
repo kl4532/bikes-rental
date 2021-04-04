@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {BikesService} from '../core/services/bikes.service';
 
 @Component({
   selector: 'app-home',
@@ -13,21 +14,19 @@ export class HomeComponent implements OnInit {
   formSubmited = false;
 
   minDate = new Date();
-  maxDate = new Date();
 
-  constructor() { }
+  constructor(private bikeService: BikesService) { }
 
   ngOnInit(): void {
-    const maxPeriod = 60;
     this.minDate = new Date();
-    this.maxDate = new Date(new Date().getTime() + (maxPeriod * 24 * 60 * 60 * 1000));
+    // this.maxDate = new Date(new Date().getTime() + (maxPeriod * 24 * 60 * 60 * 1000));
 
 
     this.searchForm = new FormGroup({
-      bikeTypes: new FormControl('', Validators.required),
-      dateStart: new FormControl('', Validators.required),
-      dateEnd: new FormControl('', Validators.required),
-      maxPrice: new FormControl('')
+      bikeTypes: new FormControl(this.bikeService.searchForm?.bikeTypes || '', Validators.required),
+      dateStart: new FormControl(this.bikeService.searchForm?.dateStart || '', Validators.required),
+      dateEnd: new FormControl(this.bikeService.searchForm?.dateEnd || '', Validators.required),
+      maxPrice: new FormControl(this.bikeService.searchForm?.maxPrice || '')
     });
   }
 

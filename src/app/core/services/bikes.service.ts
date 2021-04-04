@@ -10,6 +10,7 @@ import {Bike} from '../models/bike.model';
 export class BikesService {
 
   mockUrl = 'assets/mockBikes.json';
+  searchForm: any;
 
   constructor(private http: HttpClient, @Inject('API_URL') private baseUrl: string) { }
 
@@ -29,6 +30,10 @@ export class BikesService {
         map(bikes => bikes.find((bike: Bike) => bike.id === id)),
         catchError(this.handleError)
       );
+  }
+
+  setSearchForm(searchFormVal: any):void {
+    this.searchForm = searchFormVal;
   }
 
   private handleError(err: any): Observable<never> {
