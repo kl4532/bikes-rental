@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Bike} from '../../core/models/bike.model';
 import {BikesService} from '../../core/services/bikes.service';
 import {Observable} from 'rxjs';
@@ -13,6 +13,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class BikeDetailComponent implements OnInit {
 
   bike$: Observable<Bike> | undefined;
+  bike: any;
   rentForm: any;
   minDate = new Date();
   maxDate = new Date();
@@ -20,28 +21,27 @@ export class BikeDetailComponent implements OnInit {
   rentalTime: string[] = [];
 
   constructor(private activatedRoute: ActivatedRoute,
+              private router: Router,
               private bikesService: BikesService) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(param => {
-      this.bike$ = this.bikesService.getBikeDetails(param.id);
-    });
+    const bikeId = this.activatedRoute.snapshot.paramMap.get('id') || '';
 
+    this.bikesService.getBikeDetails(bikeId).subscribe(bike => {
+      this.bike = bike;
+      this.calcTotalPrice();
+    });
     this.minDate = new Date();
 
-    console.log('sf', this.bikesService.searchForm);
     // fill hours
     this.fillTime(9.00, 18.00, 15);
 
-
     this.rentForm = new FormGroup({
-      bikeTypes: new FormControl('', Validators.required),
       dateStart: new FormControl(this.bikesService.searchForm?.dateStart || this.minDate, Validators.required),
       dateEnd: new FormControl(this.bikesService.searchForm?.dateEnd || this.minDate, Validators.required),
       price: new FormControl('')
     });
 
-    this.calcTotalPrice();
   }
 
   fillTime(min: number, max: number, step: number): void {
@@ -58,7 +58,17 @@ export class BikeDetailComponent implements OnInit {
 
   calcTotalPrice(): void {
     const timeSpan = (new Date(this.rentForm.value.dateEnd).getTime() - new Date(this.rentForm.value.dateStart).getTime())/(24*3600*1000) + 1;
-    this.bike$?.subscribe(bike => this.totalPrice = +timeSpan.toFixed() * bike.price);
+    this.totalPrice = +timeSpan.toFixed() * this.bike.price;
+    this.rentForm.patchValue({price: this.totalPrice});
   }
 
+  onSubmit() {
+    console.log({...this.rentForm.value, id: this.bike.id});
+    // this.router.navigate(['checkout']);
+  }
+
+  addToOrderList() {
+
+    this.router.navigate(['']);
+  }
 }
