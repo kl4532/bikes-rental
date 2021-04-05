@@ -6,27 +6,67 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: 2em;
 
-  .dates {
-    .date {
-      width:15em;
-      margin-right: 0.5em;
-    }
-    .time {
-      width: 10em;
-    }
-  }
-
-
-  @media only screen and (min-width: $screen-small) {
-    flex-direction: row;
-
-    form {
-      margin-left: 1em;
-    }
-  }
   form {
     display: flex;
     flex-direction: column;
+    background-color: $form-background;
+    box-shadow: $form-shadow;
+    padding: 1em;
+    margin: 0 1em;
+  }
+
+  mat-divider {
+    margin: 1em 0;
+  }
+
+  .date, .time {
+    width: 100%;
+  }
+
+  .payment {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .buttons {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-grow: 1;
+      justify-content: space-between;
+
+      button {
+        width: 100%;
+      }
+
+      button:first-child {
+        margin-right: 0.5em;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: $screen-small) {
+  .container {
+    flex-direction: row;
+    align-items: initial;
+    margin-top: 3em;
+
+    form {
+      margin: 0 2em;
+    }
+
+    .dates {
+      .date {
+        width: 15em;
+        margin-right: 0.5em;
+      }
+
+      .time {
+        width: 10em;
+      }
+    }
   }
 }

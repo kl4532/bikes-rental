@@ -19,14 +19,16 @@ header {
     background-color: #668af6;
     flex-wrap: wrap;
     border-radius: 0.5em;
-
+    margin-bottom: 2em;
 
     .mat-form-field {
       width: 100%;
     }
+
     .placeholder {
       color: $w;
     }
+
     button {
       margin-bottom: 1em;
     }

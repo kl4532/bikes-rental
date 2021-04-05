@@ -1,4 +1,4 @@
-<div *ngIf="(bike$ | async) as bike" class="container">
+<div *ngIf="bike" class="container">
   <div>
     <img src="assets/bike-pic.jpg" alt="{{bike.name}}">
     <p>{{bike.name}}</p>
@@ -10,7 +10,9 @@
   </div>
 
   <div>
-    <form action="" [formGroup]="rentForm">
+    <form action="" [formGroup]="rentForm" (ngSubmit)="onSubmit()">
+      <mat-label>Reservation</mat-label>
+      <mat-divider></mat-divider>
       <div class="dates">
         <mat-form-field appearance="fill" class="date">
           <mat-label>Pickup</mat-label>
@@ -43,12 +45,15 @@
           </select>
         </mat-form-field>
       </div>
-
 <!--      Validation messages here!-->
-      <h2>Total ${{totalPrice}}</h2>
+      <div class="payment">
+        <h2>Total ${{totalPrice}}</h2>
+        <div class="buttons">
+          <button mat-raised-button color="primary" type="submit">Order now</button>
+          <button mat-raised-button color="secondary" (click)="addToOrderList()">Add to order list</button>
+        </div>
+      </div>
 
-
-      <button mat-raised-button color="primary">Order</button>
 
     </form>
   </div>

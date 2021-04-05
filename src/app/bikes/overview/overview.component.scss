@@ -18,10 +18,14 @@ $bike-name: 2em;
 
 .bike-container {
   width: $bike-sm;
-  margin: 0.5em;
+  margin: 1em;
+  max-width: 20em;
 
-  img {
-   width: 100%
+  a {
+    width: 100%;
+    img {
+     width: 100%
+    }
   }
 
   .bike-info-container {
