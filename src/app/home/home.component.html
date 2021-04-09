@@ -2,7 +2,7 @@
   <h1>WELCOME</h1>
   <h4>Here comes cool quote about bikes</h4>
 
-  <form action="" [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="searchbar">
+  <form action="" [formGroup]="searchForm" (ngSubmit)="onSubmit();" class="searchbar">
 <!--      bike type-->
     <mat-form-field appearance="fill">
       <mat-label>Bike types</mat-label>
@@ -39,5 +39,4 @@
   </form>
 </header>
 
-<app-bikes-overview [isSubmited]="formSubmited"
-                    [searchForm]="searchForm.value"></app-bikes-overview>
+<app-bikes-overview [searchForm$]="formSubmission$"></app-bikes-overview>

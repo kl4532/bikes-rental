@@ -20,8 +20,16 @@ export class BikesService {
       catchError(this.handleError)
     );
 
-  getBikes() {
-    return this.bikes$;
+  getFilteredBikes(form: any): Observable<Bike[]> {
+    return this.bikes$
+      .pipe(
+        // filter type and price
+        map(bikes => bikes.filter((bike: Bike) => {
+          return form.bikeTypes.includes(bike.type) && form.maxPrice >= bike.price;
+        })),
+        catchError(this.handleError)
+      );
+
   }
 
   getBikeDetails(id: string): Observable<Bike> {

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {BikesService} from '../core/services/bikes.service';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,9 @@ export class HomeComponent implements OnInit {
 
   mockBikesTypes = ['road', 'mountain', 'city', 'electric', 'mtb'];
   searchForm: any;
-  formSubmited = false;
+
+  isSubmitted = new BehaviorSubject(this.bikeService.searchForm);
+  formSubmission$ = this.isSubmitted.asObservable();
 
   minDate = new Date();
 
@@ -31,8 +34,7 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit() {
-    console.warn(this.searchForm);
-    this.formSubmited = true;
+    this.isSubmitted.next(this.searchForm.value);
   }
 
   calculateRange() {
