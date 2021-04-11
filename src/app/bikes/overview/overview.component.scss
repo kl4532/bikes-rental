@@ -51,5 +51,12 @@ $bike-name: 2em;
   @media only screen and (min-width: $screen-small) {
     width: $bike-md;
   }
+}
 
+.no-results-message {
+  text-align: center;
+  font-style: italic;
+  font-size: 2em;
+  padding: 3em;
+  line-height: 1em;
 }

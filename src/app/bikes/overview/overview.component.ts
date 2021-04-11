@@ -10,17 +10,16 @@ import {Bike} from '../../core/models/bike.model';
 })
 export class BikesOverviewComponent implements OnInit{
 
-  @Input() searchForm$;
+  @Input() searchForm$: any;
   searchFormValues = [];
-  bikes$: Observable<Bike[]>;
+  bikes$: Observable<Bike[]> | undefined;
 
 
   constructor(public bikesService: BikesService) { }
 
   ngOnInit(): void {
-    this.searchForm$.subscribe(values => {
-      console.log('values from subject', values);
-      if(values) {
+    this.searchForm$.subscribe((values: any) => {
+      if (values) {
         this.searchFormValues = values;
         this.bikes$ = this.bikesService.getFilteredBikes(values);
       }
