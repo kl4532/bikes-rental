@@ -1,3 +1,5 @@
+import {BookedDates} from './bookedDates.model';
+
 export interface Bike {
   id: string;
   picture: string;
@@ -6,7 +8,7 @@ export interface Bike {
   price: number;
   type: string;
   size: string;
-  bookedDates: string[];
+  bookedDates?: BookedDates[];
   reviews?: string[];
   rating?: number;
   gear?: string[];

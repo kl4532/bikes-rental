@@ -7,7 +7,16 @@
       "price": 25,
       "type": "mountain",
       "size": "M",
-      "bookedDates": ["Mar 10 2021-Mar 11 2021", "Apr 1 2021"]
+      "bookedDates": [
+        {
+          "dateStart": "Sun Apr 11 2021 00:00:00 GMT+0200",
+          "dateEnd": "Mon Apr 12 2021 00:00:00 GMT+0200"
+        },
+        {
+          "dateStart": "Fri Apr 16 2021 00:00:00 GMT+0200",
+          "dateEnd": "Mon Apr 18 2021 00:00:00 GMT+0200"
+        }
+      ]
     },
     {
       "id": "02",
@@ -16,8 +25,7 @@
       "description": "string",
       "price": 20,
       "type": "city",
-      "size": "M",
-      "bookedDates": []
+      "size": "M"
     },
     {
       "id": "03",
@@ -27,7 +35,12 @@
       "price": 35,
       "type": "road",
       "size": "L",
-      "bookedDates": ["May 19 2021"],
+      "bookedDates": [
+        {
+          "dateStart": "Mon May 17 2021 00:00:00 GMT+0200",
+          "dateEnd": "Sun May 23 2021 00:00:00 GMT+0200"
+        }
+      ],
       "gear": ["golden breaks", "x48 shimano Supreme gears", "leather seat"]
     },
     {
@@ -37,8 +50,7 @@
       "description": "Superbike for crazy riders",
       "price": 35,
       "type": "road",
-      "size": "L",
-      "bookedDates": []
+      "size": "L"
     },
     {
       "id": "05",
@@ -48,7 +60,6 @@
       "price": 50,
       "type": "electric",
       "size": "S",
-      "bookedDates": ["May 20 2021"],
       "gear": ["silver breaks", "battery live ~ 100km economy ride"]
 
     },
@@ -59,8 +70,7 @@
       "description": "string",
       "price": 25,
       "type": "mountain",
-      "size": "M",
-      "bookedDates": ["Mar 10 2021-Mar 11 2021", "Apr 1 2021"]
+      "size": "M"
     },
     {
       "id": "07",
@@ -69,8 +79,7 @@
       "description": "string",
       "price": 20,
       "type": "city",
-      "size": "M",
-      "bookedDates": []
+      "size": "M"
     },
     {
       "id": "08",
@@ -80,7 +89,12 @@
       "price": 35,
       "type": "road",
       "size": "L",
-      "bookedDates": ["May 19 2021"]
+      "bookedDates": [
+        {
+          "dateStart": "Mon May 17 2021 00:00:00 GMT+0200",
+          "dateEnd": "Sun May 23 2021 00:00:00 GMT+0200"
+        }
+      ]
     },
     {
       "id": "09",
@@ -89,8 +103,7 @@
       "description": "Superbike for crazy riders",
       "price": 35,
       "type": "road",
-      "size": "L",
-      "bookedDates": []
+      "size": "L"
     },
     {
       "id": "10",
@@ -99,8 +112,7 @@
       "description": "For lazy ppl",
       "price": 10,
       "type": "electric",
-      "size": "S",
-      "bookedDates": ["May 20 2021"]
+      "size": "S"
     },
     {
       "id": "11",
@@ -109,8 +121,7 @@
       "description": "string",
       "price": 25,
       "type": "mountain",
-      "size": "M",
-      "bookedDates": ["Mar 10 2021-Mar 11 2021", "Apr 1 2021"]
+      "size": "M"
     },
     {
       "id": "12",
@@ -119,8 +130,7 @@
       "description": "string",
       "price": 20,
       "type": "city",
-      "size": "M",
-      "bookedDates": []
+      "size": "M"
     },
     {
       "id": "13",
@@ -130,7 +140,12 @@
       "price": 35,
       "type": "road",
       "size": "L",
-      "bookedDates": ["May 19 2021"]
+      "bookedDates": [
+        {
+          "dateStart": "Mon May 17 2021 00:00:00 GMT+0200",
+          "dateEnd": "Sun May 23 2021 00:00:00 GMT+0200"
+        }
+      ]
     },
     {
       "id": "14",
@@ -139,8 +154,7 @@
       "description": "Superbike for crazy riders",
       "price": 35,
       "type": "road",
-      "size": "L",
-      "bookedDates": []
+      "size": "L"
     },
     {
       "id": "15",
@@ -149,8 +163,7 @@
       "description": "For lazy ppl",
       "price": 10,
       "type": "electric",
-      "size": "S",
-      "bookedDates": ["May 20 2021"]
+      "size": "S"
     }
 ]
 

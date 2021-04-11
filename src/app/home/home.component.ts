@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.isSubmitted.next(this.searchForm.value);
   }
 

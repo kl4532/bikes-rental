@@ -23,8 +23,24 @@ export class BikesService {
   getFilteredBikes(form: any): Observable<Bike[]> {
     return this.bikes$
       .pipe(
-        // filter type and price
         map(bikes => bikes.filter((bike: Bike) => {
+          // check if selected dates overlaps with already booked
+          if (bike.bookedDates) {
+            // date selected in form start/end
+            const fs = new Date(form.dateStart).getTime();
+            const fe = new Date(form.dateEnd).getTime();
+
+            for (const booked of bike.bookedDates) {
+              // date already booked start/end
+              const bs = new Date(booked.dateStart).getTime();
+              const be = new Date(booked.dateEnd).getTime();
+
+              if (bs <= fs && fs <= be || bs <= fe && fe <= be) {
+                return false;
+              }
+            }
+          }
+          // filter for bike type and max price
           return form.bikeTypes.includes(bike.type) && form.maxPrice >= bike.price;
         })),
         catchError(this.handleError)
