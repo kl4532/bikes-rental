@@ -8,6 +8,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 })
 export class LayoutHeaderComponent implements OnInit {
 
+  logged = false;
   constructor() { }
 
   ngOnInit(): void {

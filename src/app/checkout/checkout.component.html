@@ -1,0 +1,13 @@
+<h2>Your order</h2>
+<ul *ngFor="let item of items" class="items-list">
+  <li>
+    <mat-icon (click)="this.orderService.removeItemFromOrder(item.id)">delete_forever</mat-icon>
+    {{item.name}}, {{item.price}}$
+  </li>
+</ul>
+<h2>-----</h2>
+<h2>Total price: {{totalPrice}}</h2>
+<p><a href="">Log in</a> to get access to additional features</p>
+
+<h2>Order as guest</h2>
+<button>Order</button>

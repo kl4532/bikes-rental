@@ -1,1 +1,18 @@
-<mat-toolbar>Header</mat-toolbar>
+<mat-toolbar>
+  <div>Header</div>
+  <div class="user-action-buttons">
+    <div class="item">
+      <a [routerLink]="['checkout']"><mat-icon title="Checkout" class="checkout"> directions_bike</mat-icon></a>
+    </div>
+
+    <div *ngIf = "logged; else notLogged" class="item">
+      <mat-icon title="Log out">lock_open</mat-icon>
+    </div>
+    <ng-template #notLogged>
+      <div class="item">
+        <mat-icon title="Log in">lock</mat-icon>
+      </div>
+    </ng-template>
+
+  </div>
+</mat-toolbar>

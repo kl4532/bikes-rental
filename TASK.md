@@ -12,6 +12,10 @@ Website comes with at least two languages
 ### Bike detail
 - see bike detail with rental form
 
+### Checkout 
+- list full client order
+- allows to confirm and perform order
+
 ### Contact
 
 - contact form for questions

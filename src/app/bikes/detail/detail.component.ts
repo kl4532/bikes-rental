@@ -4,6 +4,7 @@ import {Bike} from '../../core/models/bike.model';
 import {BikesService} from '../../core/services/bikes.service';
 import {Observable} from 'rxjs';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {OrderService} from '../../core/services/order.service';
 
 @Component({
   selector: 'app-bike-detail',
@@ -22,7 +23,8 @@ export class BikeDetailComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
-              private bikesService: BikesService) { }
+              private bikesService: BikesService,
+              private orderService: OrderService) { }
 
   ngOnInit(): void {
     const bikeId = this.activatedRoute.snapshot.paramMap.get('id') || '';
@@ -63,11 +65,15 @@ export class BikeDetailComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log({...this.rentForm.value, id: this.bike.id});
-    // this.router.navigate(['checkout']);
+    const order = {...this.rentForm.value, id: this.bike.id, name: this.bike.name};
+    this.orderService.addToOrder(order);
+
+    this.router.navigate(['checkout']);
   }
 
   addToOrderList() {
+    const order = {...this.rentForm.value, id: this.bike.id, name: this.bike.name};
+    this.orderService.addToOrder(order);
 
     this.router.navigate(['']);
   }

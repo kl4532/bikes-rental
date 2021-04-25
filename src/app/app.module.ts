@@ -13,6 +13,7 @@ import { BikesOverviewComponent } from './bikes/overview/overview.component';
 import {HttpClientModule} from '@angular/common/http';
 import {environment} from '../environments/environment';
 import { BikeDetailComponent } from './bikes/detail/detail.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { BikeDetailComponent } from './bikes/detail/detail.component';
     LayoutHeaderComponent,
     LayoutFooterComponent,
     BikesOverviewComponent,
-    BikeDetailComponent
+    BikeDetailComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
