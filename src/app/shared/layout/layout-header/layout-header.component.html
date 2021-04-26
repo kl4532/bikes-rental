@@ -1,8 +1,8 @@
 <mat-toolbar>
-  <div>Header</div>
+  <div class="to-home" [routerLink]="['']">Header</div>
   <div class="user-action-buttons">
     <div class="item">
-      <a [routerLink]="['checkout']"><mat-icon title="Checkout" class="checkout"> directions_bike</mat-icon></a>
+      <a [routerLink]="['basket']"><mat-icon title="Checkout" class="checkout"> directions_bike</mat-icon></a>
     </div>
 
     <div *ngIf = "logged; else notLogged" class="item">
@@ -10,7 +10,7 @@
     </div>
     <ng-template #notLogged>
       <div class="item">
-        <mat-icon title="Log in">lock</mat-icon>
+        <a [routerLink]="['login']"><mat-icon title="Log in">lock</mat-icon></a>
       </div>
     </ng-template>
 
