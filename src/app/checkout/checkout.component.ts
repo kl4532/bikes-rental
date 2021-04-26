@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Item} from '../core/models/item.model';
 import {OrderService} from '../core/services/order.service';
+import {Router} from '@angular/router';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-checkout',
@@ -9,19 +10,31 @@ import {OrderService} from '../core/services/order.service';
 })
 export class CheckoutComponent implements OnInit {
 
-  items: Item[] = [];
-  totalPrice = 0;
-
-  constructor(private orderService: OrderService) { }
+  loggedin = false;
+  reservationForm: any;
+  constructor(
+    private orderService: OrderService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
-    // this.items = this.orderService.getOrder();
-    this.orderService.orderChange$.subscribe(items => this.items = items);
-
-    if (this.items) {
-      console.log('items', this.items);
-      this.totalPrice = this.items.reduce((acc, item) => acc + item.price, 0);
-    }
+    this.reservationForm = new FormGroup({
+      firstName: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required),
+      phone: new FormControl(''),
+      street: new FormControl('', Validators.required),
+      zipCode: new FormControl('', Validators.required),
+      city: new FormControl('', Validators.required),
+      country: new FormControl('', Validators.required),
+    });
   }
 
+  toBasket(): void {
+    this.router.navigateByUrl('basket');
+  }
+
+  onReservationSubmit() {
+    console.log('resForm', this.reservationForm?.value);
+  }
 }

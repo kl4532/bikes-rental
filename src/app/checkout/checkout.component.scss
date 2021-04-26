@@ -1,8 +1,26 @@
-.items-list {
-  list-style: none;
-  li {
-    mat-icon {
-      cursor: pointer;
-    }
+@import "src/app/shared/variables";
+
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+.guest-form {
+  display: flex;
+  flex-direction: column;
+  @include form-window;
+
+  p {
+    text-align: center;
   }
 }
+
+@media only screen and (min-width: $screen-large) {
+  .guest-form {
+    width: 60%;
+  }
+  form {
+  }
+}
+
+

@@ -14,6 +14,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {environment} from '../environments/environment';
 import { BikeDetailComponent } from './bikes/detail/detail.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { AuthComponent } from './auth/auth.component';
+import { BasketComponent } from './checkout/basket/basket.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { CheckoutComponent } from './checkout/checkout.component';
     LayoutFooterComponent,
     BikesOverviewComponent,
     BikeDetailComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    AuthComponent,
+    BasketComponent
   ],
   imports: [
     BrowserModule,

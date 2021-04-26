@@ -1,0 +1,10 @@
+<h2>Your order</h2>
+<ul *ngFor="let item of items" class="items-list">
+  <li>
+    <mat-icon (click)="removeItemFromOrder(item.id)">delete_forever</mat-icon>
+    {{item.name}}, {{item.price}}$
+  </li>
+</ul>
+<h2>-----</h2>
+<h2>Total price: {{totalPrice}}</h2>
+<button (click)="toCheckout()">Order now</button>
