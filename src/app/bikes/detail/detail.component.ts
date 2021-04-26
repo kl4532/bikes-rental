@@ -68,7 +68,7 @@ export class BikeDetailComponent implements OnInit {
     const order = {...this.rentForm.value, id: this.bike.id, name: this.bike.name};
     this.orderService.addToOrder(order);
 
-    this.router.navigate(['checkout']);
+    this.router.navigate(['basket']);
   }
 
   addToOrderList() {
