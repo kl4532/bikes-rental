@@ -5,7 +5,7 @@
       <a [routerLink]="['basket']"><mat-icon title="Checkout" class="checkout"> directions_bike</mat-icon></a>
     </div>
 
-    <div *ngIf = "logged; else notLogged" class="item">
+    <div (click)="logOut()" *ngIf = "logged; else notLogged" class="item">
       <mat-icon title="Log out">lock_open</mat-icon>
     </div>
     <ng-template #notLogged>

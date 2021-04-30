@@ -11,14 +11,14 @@
       <input matInput formControlName="password" type="password">
     </mat-form-field>
     <div class="buttons">
-      <button mat-raised-button color="primary" type="submit">Login</button>
+      <button [disabled]="loginForm.invalid" mat-raised-button color="primary" type="submit">Login</button>
+    </div>
+    <div *ngIf="loginFailed" class="error-login">
+      <p>Login failed</p>
     </div>
   </form>
   <mat-divider></mat-divider>
   <button class="register-btn" mat-raised-button color="secondary" type="button">Register</button>
-
-
-
 </div>
 
 

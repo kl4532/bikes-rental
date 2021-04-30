@@ -9,10 +9,10 @@ mat-toolbar {
     }
     .item {
       padding-left: 2em;
+      cursor: pointer;
     }
   }
 
   .to-home {
-    cursor: pointer;
   }
 }
