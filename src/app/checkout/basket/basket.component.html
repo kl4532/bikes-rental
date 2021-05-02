@@ -1,10 +1,23 @@
-<h2>Your order</h2>
-<ul *ngFor="let item of items" class="items-list">
-  <li>
-    <mat-icon (click)="removeItemFromOrder(item.id)">delete_forever</mat-icon>
-    {{item.name}}, {{item.price}}$
-  </li>
-</ul>
-<h2>-----</h2>
-<h2>Total price: {{totalPrice}}</h2>
-<button (click)="toCheckout()">Order now</button>
+<div class="container">
+  <p class="price price-header">Price</p>
+  <ul class="items-list">
+    <li *ngFor="let item of items">
+      <mat-divider></mat-divider>
+      <div class="item">
+        <div>
+          <img src="assets/bike-pic.jpg" alt="bike-pic">
+          <div class="details">
+            {{item.name}}
+            <br>Start:{{item.dateStart | date: 'shortDate'}}
+            <br>End{{item.dateEnd | date: 'shortDate'}}
+            <mat-icon (click)="removeItemFromOrder(item.id)">cancel</mat-icon>
+          </div>
+        </div>
+        <p class="">{{item.price}}$</p>
+      </div>
+    </li>
+  </ul>
+  <mat-divider></mat-divider>
+  <p class="price price-total">Total price: <b>{{totalPrice}}$</b></p>
+</div>
+

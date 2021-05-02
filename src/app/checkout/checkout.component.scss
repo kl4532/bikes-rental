@@ -6,20 +6,15 @@
 }
 
 .guest-form {
-  display: flex;
-  flex-direction: column;
+
   @include form-window;
+  form {
+    padding-bottom: 10px;
+    margin-bottom: 2em;
+  }
 
   p {
     text-align: center;
-  }
-}
-
-@media only screen and (min-width: $screen-large) {
-  .guest-form {
-    width: 60%;
-  }
-  form {
   }
 }
 

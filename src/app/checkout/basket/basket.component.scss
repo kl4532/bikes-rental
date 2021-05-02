@@ -1,8 +1,46 @@
-.items-list {
-  list-style: none;
-  li {
-    mat-icon {
-      cursor: pointer;
+.container {
+  display: flex;
+  flex-direction: column;
+  .price {
+    align-self: flex-end;
+  }
+  .price-total {
+    margin-top: 1em;
+    font-size: 1.8em;
+  }
+  .price-header {
+    margin: 0 0 0.1em 0;
+    font-size: 1em;
+  }
+
+  ul {
+    margin: 0.5em 0 0 0;
+    padding: 0;
+  }
+  .items-list {
+    list-style: none;
+
+    li {
+      mat-divider {
+        margin: 1em 0;
+      }
+      .item {
+        display: flex;
+        justify-content: space-between;
+        div {
+          display: flex;
+          mat-icon {
+            cursor: pointer;
+          }
+          img {
+            max-width: 10em;
+          }
+        }
+        .price-detail {
+          align-self: flex-start;
+        }
+      }
     }
   }
 }
+

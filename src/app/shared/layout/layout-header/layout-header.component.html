@@ -2,7 +2,7 @@
   <div class="to-home" [routerLink]="['']">Header</div>
   <div class="user-action-buttons">
     <div class="item">
-      <a [routerLink]="['basket']"><mat-icon title="Checkout" class="checkout"> directions_bike</mat-icon></a>
+      <a [routerLink]="['checkout']"><mat-icon title="Checkout" class="checkout"> directions_bike</mat-icon></a>
     </div>
 
     <div (click)="logOut()" *ngIf = "logged; else notLogged" class="item">

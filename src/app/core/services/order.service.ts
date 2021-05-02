@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Item} from '../models/item.model';
-import {BehaviorSubject, Subject} from 'rxjs';
+import {BehaviorSubject, Observable, of, Subject} from 'rxjs';
+import {tap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ import {BehaviorSubject, Subject} from 'rxjs';
 export class OrderService {
 
   private order: Item[] = [];
+  totalPrice: any;
   orderChange$: BehaviorSubject<Item[]> = new BehaviorSubject<Item[]>(this.order);
 
   private ls = window.localStorage;
@@ -22,16 +24,9 @@ export class OrderService {
   }
 
   removeItemFromOrder(id: string): void {
-    console.log('id', id);
     this.order = this.order.filter(item => item.id !== id);
     this.ls.setItem('order', JSON.stringify(this.order));
     this.orderChange$.next(this.order);
-  }
-
-  getOrder(): void {
-    this.getOrderFromLocalStorage();
-    this.orderChange$.next(this.order);
-    // return this.order;
   }
 
   getOrderFromLocalStorage(): void {
@@ -41,5 +36,19 @@ export class OrderService {
       savedOrder = JSON.parse(strOrder);
       this.order = savedOrder || [];
     }
+    this.orderChange$.next(this.order);
   }
+
+  finalizeOrder(userDetails: any, order: Item[]): Observable<any> {
+    console.log('Order submitted');
+    console.log('User details', userDetails);
+    console.log('Order details', order);
+    // http post request with reservation
+    return of(null);
+  }
+
+  getTotalPrice(items: Item[]): number {
+    return items.reduce((acc, item) => acc + item.price, 0);
+  }
+
 }
