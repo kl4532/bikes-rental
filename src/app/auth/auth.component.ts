@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
 export class AuthComponent implements OnInit {
 
   loginForm: any;
-  private loginFailed = false;
+  loginFailed = false;
 
   constructor(private authService: AuthService,
               private router: Router) { }
