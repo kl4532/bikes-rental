@@ -13,8 +13,20 @@ Website comes with at least two languages
 - see bike detail with rental form
 
 ### Checkout 
-- list full client order
-- allows to confirm and perform order
+
+- tab group with: basket, personal details(PD), order 
+  - basket tab lists full client order and allows to edit
+  - PD tab contains user form for both cases logged in/out, 
+    form prefilled for logged in user
+  - order tab list order datails and allows to finalize order
+
+## Admin site
+- login on path **/admin**
+- list all bikes with current status: 
+  - booked/free for rent 
+  - in service
+- view with form add/remove bikes
+- orders overview/details
 
 ### Contact
 
