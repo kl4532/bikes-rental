@@ -1,0 +1,13 @@
+.container {
+  margin: 1em 2em;
+  table {
+    width: 100%;
+  }
+  .mat-column-id .mat-column-action, .mat-column-status {
+    width: 10%
+  }
+
+  .mat-column-name {
+    width: 70%;
+  }
+}

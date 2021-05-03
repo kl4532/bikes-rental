@@ -1,0 +1,2 @@
+<app-auth [adminAuth]="true" *ngIf="!isAdminLoggedIn"></app-auth>
+<router-outlet *ngIf="isAdminLoggedIn"></router-outlet>

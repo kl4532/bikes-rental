@@ -1,0 +1,6 @@
+@import "src/app/shared/variables";
+
+.logIn-container {
+  @include login-window;
+
+}
