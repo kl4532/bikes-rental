@@ -5,6 +5,9 @@ import {BikeDetailComponent} from './bikes/detail/detail.component';
 import {CheckoutComponent} from './checkout/checkout.component';
 import {AuthComponent} from './auth/auth.component';
 import {BasketComponent} from './checkout/basket/basket.component';
+import {AdminComponent} from "./admin/admin.component";
+import {BikeListComponent} from "./admin/bike-list/bike-list.component";
+import {OrderListComponent} from "./admin/order-list/order-list.component";
 
 const routes: Routes = [
   {
@@ -27,6 +30,20 @@ const routes: Routes = [
     path: 'login',
     component: AuthComponent
   },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    children: [
+      {
+        path: 'bikes', // child route path
+        component: BikeListComponent,
+      },
+      {
+        path: 'orders',
+        component: OrderListComponent,
+      },
+    ],
+  }
 
 ];
 

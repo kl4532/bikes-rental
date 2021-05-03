@@ -16,6 +16,9 @@ import { BikeDetailComponent } from './bikes/detail/detail.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AuthComponent } from './auth/auth.component';
 import { BasketComponent } from './checkout/basket/basket.component';
+import { AdminComponent } from './admin/admin.component';
+import { BikeListComponent } from './admin/bike-list/bike-list.component';
+import { OrderListComponent } from './admin/order-list/order-list.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { BasketComponent } from './checkout/basket/basket.component';
     BikeDetailComponent,
     CheckoutComponent,
     AuthComponent,
-    BasketComponent
+    BasketComponent,
+    AdminComponent,
+    BikeListComponent,
+    OrderListComponent
   ],
   imports: [
     BrowserModule,
