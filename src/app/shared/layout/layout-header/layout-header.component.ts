@@ -9,6 +9,7 @@ import {AuthService} from "../../../core/services/auth.service";
 })
 export class LayoutHeaderComponent implements OnInit {
 
+  isAdmin = true;
   logged = false;
   constructor(private authService: AuthService) { }
 

@@ -2,9 +2,13 @@
   <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
     <mat-label>Log in</mat-label>
     <mat-divider></mat-divider>
-    <mat-form-field>
+    <mat-form-field *ngIf="!adminAuth">
       <mat-label>email</mat-label>
-      <input matInput formControlName="email" type="email">
+      <input matInput formControlName="name" type="email">
+    </mat-form-field>
+    <mat-form-field *ngIf="adminAuth">
+      <mat-label>name</mat-label>
+      <input matInput formControlName="name" type="text">
     </mat-form-field>
     <mat-form-field>
       <mat-label>password</mat-label>
@@ -17,8 +21,10 @@
       <p>Login failed</p>
     </div>
   </form>
-  <mat-divider></mat-divider>
-  <button class="register-btn" mat-raised-button color="secondary" type="button">Register</button>
+  <div *ngIf="!adminAuth">
+    <mat-divider></mat-divider>
+    <button class="register-btn" mat-raised-button color="secondary" type="button">Register</button>
+  </div>
 </div>
 
 

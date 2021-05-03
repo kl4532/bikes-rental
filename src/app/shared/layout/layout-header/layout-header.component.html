@@ -1,10 +1,21 @@
 <mat-toolbar>
   <div class="to-home" [routerLink]="['']">Header</div>
-  <div class="user-action-buttons">
+  <ul *ngIf="isAdmin" class="admin-action-buttons">
+      <li><a [routerLink]="['admin/bikes']">Bikes</a></li>
+      <li><a [routerLink]="['admin/orders']">Orders</a></li>
+      <li>
+        <mat-icon (click)="logOut()" title="Log out" class="item">lock_open</mat-icon>
+      </li>
+<!--   admin login-->
+  </ul>
+
+<!--  user-->
+  <div *ngIf="!isAdmin" class="user-action-buttons">
+    <!--    checkout-->
     <div class="item">
       <a [routerLink]="['checkout']"><mat-icon title="Checkout" class="checkout"> directions_bike</mat-icon></a>
     </div>
-
+    <!--    login-->
     <div (click)="logOut()" *ngIf = "logged; else notLogged" class="item">
       <mat-icon title="Log out">lock_open</mat-icon>
     </div>
@@ -13,6 +24,5 @@
         <a [routerLink]="['login']"><mat-icon title="Log in">lock</mat-icon></a>
       </div>
     </ng-template>
-
   </div>
 </mat-toolbar>
