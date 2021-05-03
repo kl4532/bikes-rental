@@ -22,11 +22,13 @@ Website comes with at least two languages
 
 ### Admin site
 - login on path **/admin**
-- list all bikes with current status:
-  - booked/free for rent
-  - in service
+- bike view
+  - list all bikes with current status:
+    - available/taken
+    - in service
+  - action buttons for edit, delete
+- orders view overview list and detail view
 - view with form add/remove bikes
-- orders overview/details
 
 ### Contact
 
