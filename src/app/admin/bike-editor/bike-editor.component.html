@@ -1,0 +1,68 @@
+<h2 *ngIf="!modeEdit">Add new bike</h2>
+<h2 *ngIf="modeEdit && bike">Edit <i>{{bike.name}}</i></h2>
+
+<form [formGroup]="bikeForm" *ngIf="bikeForm">
+
+<!--  <mat-form-field >-->
+<!--    <mat-label>Picture</mat-label>-->
+<!--    <textarea matInput formControlName="picture"></textarea>-->
+<!--  </mat-form-field>-->
+
+  <mat-form-field appearance="standard">
+    <ngx-mat-file-input formControlName="picture" [multiple]="true" [accept]="true" [color]="'primary'">
+    </ngx-mat-file-input>
+  </mat-form-field>
+
+  <mat-form-field appearance="standard">
+    <mat-label>Bike name</mat-label>
+    <input matInput formControlName="name">
+    <mat-error *ngIf="bikeForm.controls.name.invalid">Min 3 / Max 20 characters</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="standard">
+    <mat-label>Price</mat-label>
+    <input matInput formControlName="price">
+    <mat-error *ngIf="bikeForm.controls.price.invalid">Must be positive numeral</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="standard">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+    <mat-error *ngIf="bikeForm.controls.description.invalid">Min 15 / Max 2000 characters</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="standard">
+    <mat-label>Type</mat-label>
+    <input matInput formControlName="type">
+  </mat-form-field>
+
+  <mat-form-field appearance="standard">
+    <mat-label>Size</mat-label>
+    <input matInput formControlName="size">
+  </mat-form-field>
+
+  <!--  Ingredients formArray-->
+  <div class="ingredient-header">
+    <h4>Gear</h4>
+    <button mat-mini-fab color="primary" type="button" (click)="addItem('')"><mat-icon>add</mat-icon></button>
+  </div>
+
+  <ng-container *ngIf="gear">
+    <ng-container formArrayName="gear" *ngFor="let item of gear.controls; let i = index;">
+      <div class="ingredient-group" [formGroupName]="i">
+        <mat-form-field appearance="standard">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
+        <button mat-icon-button color="warn" type="button" (click)="removeItem(i)"><mat-icon>remove_circle</mat-icon></button>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <div class="form-buttons">
+    <button mat-raised-button [disabled]="bikeForm.invalid || bikeForm.pristine" color="primary" (click)="onSave()">Save</button>
+    <button type="submit" mat-raised-button (click)="onCancel()">Cancel</button>
+  </div>
+
+</form>
+

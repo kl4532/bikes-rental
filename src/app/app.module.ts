@@ -19,6 +19,7 @@ import { BasketComponent } from './checkout/basket/basket.component';
 import { AdminComponent } from './admin/admin.component';
 import { BikeListComponent } from './admin/bike-list/bike-list.component';
 import { OrderListComponent } from './admin/order-list/order-list.component';
+import { BikeEditorComponent } from './admin/bike-editor/bike-editor.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { OrderListComponent } from './admin/order-list/order-list.component';
     BasketComponent,
     AdminComponent,
     BikeListComponent,
-    OrderListComponent
+    OrderListComponent,
+    BikeEditorComponent
   ],
   imports: [
     BrowserModule,

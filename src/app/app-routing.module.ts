@@ -8,6 +8,7 @@ import {BasketComponent} from './checkout/basket/basket.component';
 import {AdminComponent} from "./admin/admin.component";
 import {BikeListComponent} from "./admin/bike-list/bike-list.component";
 import {OrderListComponent} from "./admin/order-list/order-list.component";
+import {BikeEditorComponent} from "./admin/bike-editor/bike-editor.component";
 
 const routes: Routes = [
   {
@@ -35,8 +36,16 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       {
-        path: 'bikes', // child route path
+        path: 'bikes',
         component: BikeListComponent,
+      },
+      {
+        path: 'bikes/editor',
+        component: BikeEditorComponent,
+      },
+      {
+        path: 'bikes/editor/:id',
+        component: BikeEditorComponent,
       },
       {
         path: 'orders',

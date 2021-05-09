@@ -10,4 +10,14 @@
   .mat-column-name {
     width: 70%;
   }
+
+  mat-icon {
+    cursor: pointer;
+  }
+
+  .tab-options {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+  }
 }

@@ -12,6 +12,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {NgxMatFileInputModule} from "@angular-material-components/file-input";
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     MatDividerModule,
     MatTabsModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgxMatFileInputModule
   ]
 })
 export class MaterialModule {}
