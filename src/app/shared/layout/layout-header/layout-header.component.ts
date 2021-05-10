@@ -9,12 +9,13 @@ import {AuthService} from "../../../core/services/auth.service";
 })
 export class LayoutHeaderComponent implements OnInit {
 
-  isAdmin = true;
+  isAdmin = false;
   logged = false;
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.authService.isUserLoggedIn.subscribe(logged => this.logged = logged);
+    this.authService.isAdminLoggedIn.subscribe(isAdmin => this.isAdmin = isAdmin);
   }
 
   logOut(): void {

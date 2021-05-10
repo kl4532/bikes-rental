@@ -8,12 +8,12 @@ import {AuthService} from "../core/services/auth.service";
 })
 export class AdminComponent implements OnInit {
 
-  isAdminLoggedIn = true;
+  isAdminLoggedIn = false;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    // this.authService.isAdminLoggedIn.subscribe(isAdmin => this.isAdminLoggedIn = isAdmin);
+    this.authService.isAdminLoggedIn.subscribe(isAdmin => this.isAdminLoggedIn = isAdmin);
   }
 
 }
