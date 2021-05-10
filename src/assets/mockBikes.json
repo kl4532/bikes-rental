@@ -16,7 +16,8 @@
           "dateStart": "Fri Apr 16 2021 00:00:00 GMT+0200",
           "dateEnd": "Mon Apr 18 2021 00:00:00 GMT+0200"
         }
-      ]
+      ],
+      "status": "available"
     },
     {
       "id": "02",
@@ -25,7 +26,8 @@
       "description": "string",
       "price": 20,
       "type": "city",
-      "size": "M"
+      "size": "M",
+      "status": "available"
     },
     {
       "id": "03",
@@ -41,7 +43,8 @@
           "dateEnd": "Sun May 23 2021 00:00:00 GMT+0200"
         }
       ],
-      "gear": ["golden breaks", "x48 shimano Supreme gears", "leather seat"]
+      "gear": ["golden breaks", "x48 shimano Supreme gears", "leather seat"],
+      "status": "available"
     },
     {
       "id": "04",
@@ -50,7 +53,8 @@
       "description": "Superbike for crazy riders",
       "price": 35,
       "type": "road",
-      "size": "L"
+      "size": "L",
+      "status": "in service"
     },
     {
       "id": "05",
@@ -60,8 +64,8 @@
       "price": 50,
       "type": "electric",
       "size": "S",
-      "gear": ["silver breaks", "battery live ~ 100km economy ride"]
-
+      "gear": ["silver breaks", "battery live ~ 100km economy ride"],
+      "status": "available"
     },
     {
       "id": "06",
@@ -70,7 +74,8 @@
       "description": "string",
       "price": 25,
       "type": "mountain",
-      "size": "M"
+      "size": "M",
+      "status": "available"
     },
     {
       "id": "07",
@@ -79,7 +84,8 @@
       "description": "string",
       "price": 20,
       "type": "city",
-      "size": "M"
+      "size": "M",
+      "status": "available"
     },
     {
       "id": "08",
@@ -94,7 +100,8 @@
           "dateStart": "Mon May 17 2021 00:00:00 GMT+0200",
           "dateEnd": "Sun May 23 2021 00:00:00 GMT+0200"
         }
-      ]
+      ],
+      "status": "available"
     },
     {
       "id": "09",
@@ -103,7 +110,8 @@
       "description": "Superbike for crazy riders",
       "price": 35,
       "type": "road",
-      "size": "L"
+      "size": "L",
+      "status": "available"
     },
     {
       "id": "10",
@@ -112,7 +120,8 @@
       "description": "For lazy ppl",
       "price": 10,
       "type": "electric",
-      "size": "S"
+      "size": "S",
+      "status": "in service"
     },
     {
       "id": "11",
@@ -121,7 +130,8 @@
       "description": "string",
       "price": 25,
       "type": "mountain",
-      "size": "M"
+      "size": "M",
+      "status": "available"
     },
     {
       "id": "12",
@@ -130,7 +140,8 @@
       "description": "string",
       "price": 20,
       "type": "city",
-      "size": "M"
+      "size": "M",
+      "status": "available"
     },
     {
       "id": "13",
@@ -145,7 +156,8 @@
           "dateStart": "Mon May 17 2021 00:00:00 GMT+0200",
           "dateEnd": "Sun May 23 2021 00:00:00 GMT+0200"
         }
-      ]
+      ],
+      "status": "available"
     },
     {
       "id": "14",
@@ -154,7 +166,8 @@
       "description": "Superbike for crazy riders",
       "price": 35,
       "type": "road",
-      "size": "L"
+      "size": "L",
+      "status": "available"
     },
     {
       "id": "15",
@@ -163,7 +176,8 @@
       "description": "For lazy ppl",
       "price": 10,
       "type": "electric",
-      "size": "S"
+      "size": "S",
+      "status": "available"
     }
 ]
 

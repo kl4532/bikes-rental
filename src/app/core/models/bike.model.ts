@@ -12,4 +12,5 @@ export interface Bike {
   reviews?: string[];
   rating?: number;
   gear?: string[];
+  status: string;
 }
