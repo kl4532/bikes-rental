@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
@@ -39,11 +39,11 @@ export class BikeListComponent implements OnInit {
     }
   }
 
-  edit(id: string) {
+  edit(id: string): void {
     console.log('edit', id);
   }
 
-  remove(id: string) {
+  remove(id: string): void {
     console.log('edit', id);
   }
 }

@@ -3,7 +3,7 @@
   <div class="tab-options">
     <mat-form-field>
       <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Romet" #input>
     </mat-form-field>
     <button [routerLink]="['editor']" mat-flat-button color="primary" aria-label="add new bike icon">
       <mat-icon>add</mat-icon>
@@ -13,8 +13,6 @@
 
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
-
-      <!-- ID Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
         <td mat-cell *matCellDef="let row"> {{row.id}} </td>
@@ -27,7 +25,7 @@
 
       <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-        <td mat-cell *matCellDef="let row"> free </td>
+        <td mat-cell *matCellDef="let row" [style.color]="row.status === 'in service' ? 'red' : 'green'">{{row.status}}</td>
       </ng-container>
 
       <ng-container matColumnDef="action">

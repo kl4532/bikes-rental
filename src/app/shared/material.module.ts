@@ -13,6 +13,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {NgxMatFileInputModule} from "@angular-material-components/file-input";
+import {MatSortModule} from "@angular/material/sort";
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import {NgxMatFileInputModule} from "@angular-material-components/file-input";
     MatDividerModule,
     MatTabsModule,
     MatTableModule,
+    MatSortModule,
     MatPaginatorModule
   ],
   exports: [
@@ -44,6 +46,7 @@ import {NgxMatFileInputModule} from "@angular-material-components/file-input";
     MatDividerModule,
     MatTabsModule,
     MatTableModule,
+    MatSortModule,
     MatPaginatorModule,
     NgxMatFileInputModule
   ]
