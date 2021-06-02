@@ -3,12 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 // const apiEndpoint = '/api';
-const baseUrl = 'http://localhost:4200';
+const baseUrl = 'http://localhost:8080/api/v1/';
 
 export const environment = {
   production: false,
   http_timeout: 10,
-  API_URL: `${baseUrl}$`
+  API_URL: `${baseUrl}`
 };
 /*
  * For easier debugging in development mode, you can import the following file

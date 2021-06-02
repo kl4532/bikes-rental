@@ -1,6 +1,6 @@
 [
     {
-      "id": "01",
+      "id": 1,
       "picture": "pic",
       "name": "MTB",
       "description": "string",
@@ -20,7 +20,7 @@
       "status": "available"
     },
     {
-      "id": "02",
+      "id": 2,
       "picture": "pic",
       "name": "string",
       "description": "string",
@@ -30,7 +30,7 @@
       "status": "available"
     },
     {
-      "id": "03",
+      "id": 3,
       "picture": "pic",
       "name": "My birthday",
       "description": "Superbike for crazy riders",
@@ -47,7 +47,7 @@
       "status": "available"
     },
     {
-      "id": "04",
+      "id": 4,
       "picture": "pic",
       "name": "Kids",
       "description": "Superbike for crazy riders",
@@ -57,7 +57,7 @@
       "status": "in service"
     },
     {
-      "id": "05",
+      "id": 5,
       "picture": "pic",
       "name": "Musk idea",
       "description": "For lazy ppl",
@@ -68,7 +68,7 @@
       "status": "available"
     },
     {
-      "id": "06",
+      "id": 6,
       "picture": "pic",
       "name": "MTB",
       "description": "string",
@@ -78,7 +78,7 @@
       "status": "available"
     },
     {
-      "id": "07",
+      "id": 7,
       "picture": "pic",
       "name": "string",
       "description": "string",
@@ -88,7 +88,7 @@
       "status": "available"
     },
     {
-      "id": "08",
+      "id": 8,
       "picture": "pic",
       "name": "My birthday",
       "description": "Superbike for crazy riders",
@@ -104,7 +104,7 @@
       "status": "available"
     },
     {
-      "id": "09",
+      "id": 9,
       "picture": "pic",
       "name": "Kids",
       "description": "Superbike for crazy riders",
@@ -114,7 +114,7 @@
       "status": "available"
     },
     {
-      "id": "10",
+      "id": 10,
       "picture": "pic",
       "name": "Musk idea",
       "description": "For lazy ppl",
@@ -124,7 +124,7 @@
       "status": "in service"
     },
     {
-      "id": "11",
+      "id": 11,
       "picture": "pic",
       "name": "MTB",
       "description": "string",
@@ -134,7 +134,7 @@
       "status": "available"
     },
     {
-      "id": "12",
+      "id": 12,
       "picture": "pic",
       "name": "string",
       "description": "string",
@@ -144,7 +144,7 @@
       "status": "available"
     },
     {
-      "id": "13",
+      "id": 13,
       "picture": "pic",
       "name": "My birthday",
       "description": "Superbike for crazy riders",
@@ -160,7 +160,7 @@
       "status": "available"
     },
     {
-      "id": "14",
+      "id": 14,
       "picture": "pic",
       "name": "Kids",
       "description": "Superbike for crazy riders",
@@ -170,7 +170,7 @@
       "status": "available"
     },
     {
-      "id": "15",
+      "id": 15,
       "picture": "pic",
       "name": "Musk idea",
       "description": "For lazy ppl",

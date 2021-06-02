@@ -27,8 +27,9 @@ export class BikeDetailComponent implements OnInit {
               private orderService: OrderService) { }
 
   ngOnInit(): void {
-    const bikeId = this.activatedRoute.snapshot.paramMap.get('id') || '';
-
+    // @ts-ignore
+    const bikeId = +this.activatedRoute.snapshot.paramMap.get('id');
+    console.log('bikeId', bikeId);
     this.bikesService.getBikeDetails(bikeId).subscribe(bike => {
       this.bike = bike;
       this.calcTotalPrice();
@@ -64,7 +65,7 @@ export class BikeDetailComponent implements OnInit {
     this.rentForm.patchValue({price: this.totalPrice});
   }
 
-  onSubmit() {
+  onSubmit(): void{
     const order = {...this.rentForm.value, id: this.bike.id, name: this.bike.name};
     this.orderService.addToOrder(order);
 

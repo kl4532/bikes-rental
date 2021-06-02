@@ -48,7 +48,7 @@ export class BikesService {
 
   }
 
-  getBikeDetails(id: string): Observable<Bike> {
+  getBikeDetails(id: number): Observable<Bike> {
     return this.bikes$
       .pipe(
         map(bikes => bikes.find((bike: Bike) => bike.id === id)),
@@ -72,5 +72,10 @@ export class BikesService {
     }
     console.error(err);
     return throwError(errorMessage);
+  }
+
+  createBike(bike: Bike): any{
+    console.log('sent');
+    return this.http.post(`${this.baseUrl}/bikes`, bike).subscribe();
   }
 }

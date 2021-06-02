@@ -12,7 +12,7 @@ import {Bike} from "../../core/models/bike.model";
 })
 export class BikeEditorComponent implements OnInit {
 
-  bikeId = '';
+  bikeId = 0;
   bikeForm: FormGroup = new FormGroup({});
   gear: FormArray = new FormArray([]);
   modeEdit = false;
@@ -28,7 +28,7 @@ export class BikeEditorComponent implements OnInit {
 
     this.activatedRoute.params.subscribe(params => {
       const param = 'id';
-      this.bikeId = params[param];
+      this.bikeId = +params[param];
       this.modeEdit = !!this.bikeId;
       if (this.modeEdit) {
         this.bikeService.getBikeDetails(this.bikeId).subscribe((bike: Bike) => {
@@ -115,7 +115,8 @@ export class BikeEditorComponent implements OnInit {
     // }
 
     console.log('new bike added', this.bikeForm.value);
-    this.router.navigate(['/admin/bikes']);
+    this.bikeService.createBike(this.bikeForm.value);
+    // this.router.navigate(['/admin/bikes']);
   }
 
   generateUUID(): number {
