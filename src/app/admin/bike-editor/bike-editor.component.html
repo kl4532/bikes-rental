@@ -41,6 +41,14 @@
     <input matInput formControlName="size">
   </mat-form-field>
 
+  <mat-form-field appearance="standard">
+    <mat-label>Status</mat-label>
+    <mat-select formControlName="status">
+      <mat-option value="available">available</mat-option>
+      <mat-option value="in service">in service</mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <!--  Ingredients formArray-->
   <div class="ingredient-header">
     <h4>Gear</h4>

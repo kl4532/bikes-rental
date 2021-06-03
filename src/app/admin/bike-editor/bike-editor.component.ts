@@ -47,8 +47,7 @@ export class BikeEditorComponent implements OnInit {
     });
 
     this.bikeForm = new FormGroup({
-      picture: new FormControl('',[
-        Validators.required]),
+      picture: new FormControl(''),
       name: new FormControl('',[
         Validators.required,
         Validators.minLength(3),
@@ -60,6 +59,8 @@ export class BikeEditorComponent implements OnInit {
       type: new FormControl('',[
         Validators.required]),
       size: new FormControl('',[
+        Validators.required]),
+      status: new FormControl('available',[
         Validators.required]),
       gear: this.formBuilder.array([])
     });
@@ -74,7 +75,8 @@ export class BikeEditorComponent implements OnInit {
         price: bike.price,
         type: bike.type,
         size: bike.size,
-        gear: []
+        gear: [],
+        status: bike.status
       });
 
       if (bike.gear !== undefined) {
@@ -86,16 +88,15 @@ export class BikeEditorComponent implements OnInit {
   }
 
 
-  createItem(name: string, id?: number): FormGroup {
+  createItem(name: string): FormGroup {
     return this.formBuilder.group({
-      id: id || this.generateUUID(),
       name: [name]
     });
   }
 
-  addItem(name: string, id?: number): void {
+  addItem(name: string): void {
     this.gear = this.bikeForm.get('gear') as FormArray;
-    this.gear.push(this.createItem(name, id));
+    this.gear.push(this.createItem(name));
   }
 
   removeItem(index: number): void {
@@ -108,13 +109,6 @@ export class BikeEditorComponent implements OnInit {
   }
 
   onSave(): void {
-    // if (this.modeEdit) {
-    //   this.bikeService.updateRecipe(parseInt(this.recipeId), {_id: this.recipeId, ...this.recipeForm.value});
-    // } else {
-    //   this.bikeService.createRecipe({_id: this.generateUUID(), ...this.recipeForm.value});
-    // }
-
-    console.log('new bike added', this.bikeForm.value);
     this.bikeService.createBike(this.bikeForm.value);
     // this.router.navigate(['/admin/bikes']);
   }

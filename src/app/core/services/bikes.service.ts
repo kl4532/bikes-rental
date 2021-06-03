@@ -10,11 +10,12 @@ import {Bike} from '../models/bike.model';
 export class BikesService {
 
   mockUrl = 'assets/mockBikes.json';
+  url = `${this.baseUrl}/bikes`;
   searchForm: any;
 
   constructor(private http: HttpClient, @Inject('API_URL') private baseUrl: string) { }
 
-  bikes$ = this.http.get<any>(this.mockUrl)
+  bikes$ = this.http.get<any>(this.url)
     .pipe(
       tap(data => console.log('bikes', data)),
       catchError(this.handleError)
@@ -74,8 +75,18 @@ export class BikesService {
     return throwError(errorMessage);
   }
 
-  createBike(bike: Bike): any{
-    console.log('sent');
-    return this.http.post(`${this.baseUrl}/bikes`, bike).subscribe();
+  createBike(bike: any): any{
+    const flattenGear = [];
+    for (const el of bike.gear) {
+      flattenGear.push(el.name);
+    }
+    bike.picture = bike.picture[0];
+    bike.gear = flattenGear;
+    console.log('bike to sent', bike);
+    return this.http.post(this.url, bike).subscribe(
+      data => console.log(data),
+      err => console.log(err),
+      () => console.log('Sent successfully')
+    );
   }
 }
