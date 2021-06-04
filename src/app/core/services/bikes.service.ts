@@ -75,15 +75,34 @@ export class BikesService {
     return throwError(errorMessage);
   }
 
-  createBike(bike: any): any{
+  createBike(bikeForm: any): any{
     const flattenGear = [];
-    for (const el of bike.gear) {
+    for (const el of bikeForm.gear) {
       flattenGear.push(el.name);
     }
-    bike.picture = bike.picture[0];
-    bike.gear = flattenGear;
-    console.log('bike to sent', bike);
-    return this.http.post(this.url, bike).subscribe(
+    bikeForm.gear = flattenGear;
+
+    const formData: FormData = new FormData();
+    // bikeForm.picture[0] === undefined ? bikeForm.picture[0] = null : 0;
+    formData.append('picture', bikeForm.picture[0]);
+
+    console.log('bike to sent', formData);
+
+    formData.append('bike', new Blob([JSON.stringify(
+{
+        name: bikeForm.name,
+        description: bikeForm.description,
+        price: bikeForm.price,
+        gear: bikeForm.gear,
+        size: bikeForm.size,
+        status: bikeForm.status,
+        type: bikeForm.type
+      }
+      )], {
+      type: 'application/json'
+    }));
+
+    return this.http.post(this.url, formData, ).subscribe(
       data => console.log(data),
       err => console.log(err),
       () => console.log('Sent successfully')
