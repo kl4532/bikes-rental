@@ -1,6 +1,8 @@
 <div class="bikes-container" *ngIf="bikes$ | async as bikes;">
     <div class="bike-container" *ngFor="let bike of bikes">
-      <a [routerLink]="['/bike', bike.id]" (click)="bikesService.setSearchForm(searchFormValues)"><img src="assets/bike-pic.jpg" alt="{{bike.name}} picture"></a>
+      <a [routerLink]="['/bike', bike.id]" (click)="bikesService.setSearchForm(searchFormValues)">
+        <img [src]="bike.picture" alt="{{bike.name}} picture">
+      </a>
 
       <div class="bike-info-container">
         <span class="bike-price">${{bike.price}}</span>

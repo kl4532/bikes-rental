@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Bike} from '../models/bike.model';
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +14,23 @@ export class BikesService {
   url = `${this.baseUrl}/bikes`;
   searchForm: any;
 
-  constructor(private http: HttpClient, @Inject('API_URL') private baseUrl: string) { }
+  constructor(private http: HttpClient,
+              private sanitizer: DomSanitizer,
+              @Inject('API_URL') private baseUrl: string) { }
 
   bikes$ = this.http.get<any>(this.url)
     .pipe(
-      tap(data => console.log('bikes', data)),
+      map(data => {
+        for (const bike of data) {
+          console.log('bike', bike);
+          if (bike.picture) {
+            const imgUrl = 'data:image/png;base64,' + bike.picture;
+            bike.picture = this.sanitizer.bypassSecurityTrustUrl(imgUrl);
+          }
+        }
+
+        return data;
+      }),
       catchError(this.handleError)
     );
 

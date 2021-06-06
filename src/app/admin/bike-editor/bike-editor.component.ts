@@ -47,16 +47,16 @@ export class BikeEditorComponent implements OnInit {
     });
 
     this.bikeForm = new FormGroup({
-      picture: new FormControl(''),
+      picture: new FormControl(null),
       name: new FormControl('Test',[
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(20)]),
       description: new FormControl('test',[
         Validators.required]),
-      price: new FormControl('123',[
+      price: new FormControl('10',[
         Validators.required]),
-      type: new FormControl('ASD',[
+      type: new FormControl('road',[
         Validators.required]),
       size: new FormControl('M',[
         Validators.required]),
