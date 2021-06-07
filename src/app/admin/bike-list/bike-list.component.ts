@@ -39,11 +39,11 @@ export class BikeListComponent implements OnInit {
     }
   }
 
-  edit(id: string): void {
+  edit(id: number): void {
     console.log('edit', id);
   }
 
-  remove(id: string): void {
-    console.log('edit', id);
+  remove(id: number): void {
+    this.bikeService.removeBike(id);
   }
 }

@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
-import {catchError, map, take, tap} from 'rxjs/operators';
+import {catchError, map, take} from 'rxjs/operators';
 import {Bike} from '../models/bike.model';
 import {DomSanitizer} from "@angular/platform-browser";
 
@@ -29,6 +29,7 @@ export class BikesService {
           }
         }
         console.log('fetched bikes', data);
+        this.bikes = data;
         return data;
       }),
       catchError(this.handleError)
@@ -105,6 +106,11 @@ export class BikesService {
       err => console.log(err),
       () => console.log('Sent successfully')
     );
+  }
+
+  removeBike(id: number): any {
+    console.log('bike removed');
+    return this.http.delete(`${this.url}/${id}`).subscribe();
   }
 
   setSearchForm(searchFormVal: any): void {
