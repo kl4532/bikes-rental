@@ -1,7 +1,8 @@
+import {Bike} from "./bike.model";
+
 export interface Item {
-  id: number;
-  name: string;
   price: number;
   dateStart: string;
   dateEnd: string;
+  bike: Bike;
 }

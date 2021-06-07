@@ -4,14 +4,13 @@
     <li *ngFor="let item of items">
       <mat-divider></mat-divider>
       <div class="item">
-<!--        TODO fix it to check for value once-->
-        <div *ngIf="this.bikeService.getBikeDetails(item.id) | async as bike">
-          <img [src]="bike.picture ? bike.picture : 'assets/bike-pic.jpg'" alt="{{bike.name}} picture">
+        <div>
+          <img [src]="item.bike.picture ? item.bike.picture : 'assets/bike-pic.jpg'" alt="{{item.bike.name}} picture">
           <div class="details">
-            {{item.name}}
+            {{item.bike.name}}
             <br>Start:{{item.dateStart | date: 'shortDate'}}
             <br>End{{item.dateEnd | date: 'shortDate'}}
-            <mat-icon (click)="removeItemFromOrder(item.id)">cancel</mat-icon>
+            <mat-icon (click)="removeItemFromOrder(item.bike.id)">cancel</mat-icon>
           </div>
         </div>
         <p class="">{{item.price}}$</p>

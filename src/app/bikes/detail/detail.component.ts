@@ -65,17 +65,18 @@ export class BikeDetailComponent implements OnInit {
     this.rentForm.patchValue({price: this.totalPrice});
   }
 
-  onSubmit(): void{
-    const order = {...this.rentForm.value, id: this.bike.id, name: this.bike.name};
-    this.orderService.addToOrder(order);
+  makeOrder() {
+    const item = {...this.rentForm.value, bike: this.bike};
+    this.orderService.addToOrder(item);
+  }
 
+  onSubmit(): void{
+    this.makeOrder();
     this.router.navigate(['checkout']);
   }
 
-  addToOrderList() {
-    const order = {...this.rentForm.value, id: this.bike.id, name: this.bike.name};
-    this.orderService.addToOrder(order);
-
+  addToOrderList(): void {
+    this.makeOrder();
     this.router.navigate(['']);
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Item} from '../models/item.model';
 import {BehaviorSubject, Observable, of, Subject} from 'rxjs';
-import {tap} from "rxjs/operators";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class OrderService {
 
   private ls = window.localStorage;
 
-  constructor() { }
+  constructor(private sanitizer: DomSanitizer) { }
 
   addToOrder(item: Item): void {
     this.getOrderFromLocalStorage();
@@ -24,16 +24,20 @@ export class OrderService {
   }
 
   removeItemFromOrder(id: number): void {
-    this.order = this.order.filter(item => item.id !== id);
+    this.order = this.order.filter(item => item.bike.id !== id);
     this.ls.setItem('order', JSON.stringify(this.order));
     this.orderChange$.next(this.order);
   }
 
   getOrderFromLocalStorage(): void {
-    let savedOrder;
+    let savedOrder: Item[];
     if (this.ls.order) {
       const strOrder = this.ls.getItem('order') || '';
       savedOrder = JSON.parse(strOrder);
+      for (const item of savedOrder) {
+        const url = item.bike.picture.changingThisBreaksApplicationSecurity;
+        item.bike.picture = this.sanitizer.bypassSecurityTrustUrl(url);
+      }
       this.order = savedOrder || [];
     }
     this.orderChange$.next(this.order);

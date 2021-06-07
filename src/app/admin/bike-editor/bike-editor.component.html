@@ -2,12 +2,6 @@
 <h2 *ngIf="modeEdit && bike">Edit <i>{{bike.name}}</i></h2>
 
 <form [formGroup]="bikeForm" *ngIf="bikeForm">
-
-<!--  <mat-form-field >-->
-<!--    <mat-label>Picture</mat-label>-->
-<!--    <textarea matInput formControlName="picture"></textarea>-->
-<!--  </mat-form-field>-->
-
   <mat-form-field appearance="standard">
     <ngx-mat-file-input formControlName="picture" [multiple]="false" [accept]="'image/png, image/jpeg'" [color]="'primary'">
     </ngx-mat-file-input>

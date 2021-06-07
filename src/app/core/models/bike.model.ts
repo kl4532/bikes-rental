@@ -2,7 +2,7 @@ import {BookedDates} from './bookedDates.model';
 
 export interface Bike {
   id: number;
-  picture: File;
+  picture: any;
   name: string;
   description: string;
   price: number;

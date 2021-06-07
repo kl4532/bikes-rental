@@ -30,7 +30,10 @@
 
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-        <td mat-cell *matCellDef="let row"> <mat-icon [routerLink]="['editor', row.id]" (click)="edit(row.id)">edit</mat-icon> <mat-icon (click)="remove(row.id)">delete</mat-icon></td>
+        <td mat-cell *matCellDef="let row">
+          <mat-icon [routerLink]="['editor', row.id]" (click)="edit(row.id)">edit</mat-icon>
+          <mat-icon (click)="remove(row.id)">delete</mat-icon>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
