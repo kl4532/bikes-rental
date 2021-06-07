@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
-import {catchError, map, tap} from 'rxjs/operators';
+import {catchError, map, take, tap} from 'rxjs/operators';
 import {Bike} from '../models/bike.model';
 import {DomSanitizer} from "@angular/platform-browser";
 
@@ -13,6 +13,7 @@ export class BikesService {
   mockUrl = 'assets/mockBikes.json';
   url = `${this.baseUrl}/bikes`;
   searchForm: any;
+  bikes: Bike[] | undefined;
 
   constructor(private http: HttpClient,
               private sanitizer: DomSanitizer,
@@ -22,13 +23,12 @@ export class BikesService {
     .pipe(
       map(data => {
         for (const bike of data) {
-          console.log('bike', bike);
           if (bike.picture) {
             const imgUrl = 'data:image/png;base64,' + bike.picture;
             bike.picture = this.sanitizer.bypassSecurityTrustUrl(imgUrl);
           }
         }
-
+        console.log('fetched bikes', data);
         return data;
       }),
       catchError(this.handleError)
@@ -65,12 +65,49 @@ export class BikesService {
   getBikeDetails(id: number): Observable<Bike> {
     return this.bikes$
       .pipe(
-        map(bikes => bikes.find((bike: Bike) => bike.id === id)),
+        map(bikes => bikes.find((bike: Bike) => {
+          return bike.id === id;
+        })),
+        take(1),
         catchError(this.handleError)
       );
   }
 
-  setSearchForm(searchFormVal: any):void {
+  createBike(bikeForm: any): any{
+    const flattenGear = [];
+    for (const el of bikeForm.gear) {
+      flattenGear.push(el.name);
+    }
+    bikeForm.gear = flattenGear;
+
+    const formData: FormData = new FormData();
+    bikeForm.picture ? bikeForm.picture[0] = null : 0;
+    formData.append('picture', bikeForm.picture);
+
+    console.log('bike to sent', formData);
+
+    formData.append('bike', new Blob([JSON.stringify(
+      {
+        name: bikeForm.name,
+        description: bikeForm.description,
+        price: bikeForm.price,
+        gear: bikeForm.gear,
+        size: bikeForm.size,
+        status: bikeForm.status,
+        type: bikeForm.type
+      }
+    )], {
+      type: 'application/json'
+    }));
+
+    return this.http.post(this.url, formData, ).subscribe(
+      data => console.log(data),
+      err => console.log(err),
+      () => console.log('Sent successfully')
+    );
+  }
+
+  setSearchForm(searchFormVal: any): void {
     this.searchForm = searchFormVal;
   }
 
@@ -86,39 +123,5 @@ export class BikesService {
     }
     console.error(err);
     return throwError(errorMessage);
-  }
-
-  createBike(bikeForm: any): any{
-    const flattenGear = [];
-    for (const el of bikeForm.gear) {
-      flattenGear.push(el.name);
-    }
-    bikeForm.gear = flattenGear;
-
-    const formData: FormData = new FormData();
-    // bikeForm.picture[0] === undefined ? bikeForm.picture[0] = null : 0;
-    formData.append('picture', bikeForm.picture[0]);
-
-    console.log('bike to sent', formData);
-
-    formData.append('bike', new Blob([JSON.stringify(
-{
-        name: bikeForm.name,
-        description: bikeForm.description,
-        price: bikeForm.price,
-        gear: bikeForm.gear,
-        size: bikeForm.size,
-        status: bikeForm.status,
-        type: bikeForm.type
-      }
-      )], {
-      type: 'application/json'
-    }));
-
-    return this.http.post(this.url, formData, ).subscribe(
-      data => console.log(data),
-      err => console.log(err),
-      () => console.log('Sent successfully')
-    );
   }
 }
