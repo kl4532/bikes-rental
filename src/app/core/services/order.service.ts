@@ -23,7 +23,7 @@ export class OrderService {
     this.orderChange$.next(this.order);
   }
 
-  removeItemFromOrder(id: string): void {
+  removeItemFromOrder(id: number): void {
     this.order = this.order.filter(item => item.id !== id);
     this.ls.setItem('order', JSON.stringify(this.order));
     this.orderChange$.next(this.order);

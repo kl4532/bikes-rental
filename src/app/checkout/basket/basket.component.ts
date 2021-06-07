@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {Item} from '../../core/models/item.model';
 import {OrderService} from '../../core/services/order.service';
+import {BikesService} from "../../core/services/bikes.service";
 
 @Component({
   selector: 'app-basket',
@@ -15,7 +16,8 @@ export class BasketComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
-    private router: Router
+    private router: Router,
+    public bikeService: BikesService
   ) { }
 
   ngOnInit(): void {
@@ -26,7 +28,7 @@ export class BasketComponent implements OnInit {
     });
   }
 
-  removeItemFromOrder(id: string): void {
+  removeItemFromOrder(id: number): void {
     this.orderService.removeItemFromOrder(id);
   }
 

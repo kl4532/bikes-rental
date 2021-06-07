@@ -1,8 +1,7 @@
 @import "src/app/shared/variables";
 
-$bike-sm: 80%;
-$bike-md: 30em;
-$bike-name: 2em;
+$bike-width: 20em;
+$bike-name: 1.3em;
 
 .bikes-container, .bike-container {
   display: flex;
@@ -17,14 +16,14 @@ $bike-name: 2em;
 }
 
 .bike-container {
-  width: $bike-sm;
+  width: $bike-width;
   margin: 1em;
-  max-width: 20em;
 
   a {
     width: 100%;
     img {
-     width: 100%
+      width: $bike-width;
+      height: 20em;
     }
   }
 
@@ -47,9 +46,6 @@ $bike-name: 2em;
       color: $w;
       padding: 0.4em;
     }
-  }
-  @media only screen and (min-width: $screen-small) {
-    width: $bike-md;
   }
 }
 

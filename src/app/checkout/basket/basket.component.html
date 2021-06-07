@@ -4,8 +4,9 @@
     <li *ngFor="let item of items">
       <mat-divider></mat-divider>
       <div class="item">
-        <div>
-          <img src="assets/bike-pic.jpg" alt="bike-pic">
+<!--        TODO fix it to check for value once-->
+        <div *ngIf="this.bikeService.getBikeDetails(item.id) | async as bike">
+          <img [src]="bike.picture ? bike.picture : 'assets/bike-pic.jpg'" alt="{{bike.name}} picture">
           <div class="details">
             {{item.name}}
             <br>Start:{{item.dateStart | date: 'shortDate'}}

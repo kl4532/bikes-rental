@@ -1,6 +1,6 @@
 <div *ngIf="bike" class="container">
-  <div>
-    <img src="assets/bike-pic.jpg" alt="{{bike.name}}">
+  <div class="bike-info">
+    <img [src]="bike.picture ? bike.picture : 'assets/bike-pic.jpg'" alt="{{bike.name}} picture">
     <p>{{bike.name}}</p>
     <p>{{bike.description}}</p>
     <h3>Technical</h3>
@@ -9,7 +9,7 @@
     </ul>
   </div>
 
-  <div>
+  <div class="bike-form">
     <form action="" [formGroup]="rentForm" (ngSubmit)="onSubmit()">
       <mat-label>Reservation</mat-label>
       <mat-divider></mat-divider>
@@ -55,5 +55,4 @@
       </div>
     </form>
   </div>
-
 </div>
