@@ -5,6 +5,7 @@
   <mat-form-field appearance="standard">
     <ngx-mat-file-input formControlName="picture" [multiple]="false" [accept]="'image/png, image/jpeg'" [color]="'primary'">
     </ngx-mat-file-input>
+    <small>Max size: {{ maxImgSizeMb }}[Mb]</small>
   </mat-form-field>
 
   <mat-form-field appearance="standard">

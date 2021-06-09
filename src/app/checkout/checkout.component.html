@@ -64,7 +64,7 @@
     <h3>Order</h3>
     <div>
       <ul>
-        <li *ngFor="let item of order">{{item.name}}</li>
+        <li *ngFor="let item of order">{{item.bike.name}}</li>
       </ul>
       Total: {{ totalPrice}}$
       <button mat-raised-button color="primary" type="submit" (click)="onOrderSubmit()">Order</button>

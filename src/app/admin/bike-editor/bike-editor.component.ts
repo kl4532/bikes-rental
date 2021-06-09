@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {BookedDates} from "../../core/models/bookedDates.model";
 import {BikesService} from "../../core/services/bikes.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Bike} from "../../core/models/bike.model";
+import { MaxSizeValidator } from '@angular-material-components/file-input';
 
 @Component({
   selector: 'app-bike-editor',
@@ -17,6 +17,7 @@ export class BikeEditorComponent implements OnInit {
   gear: FormArray = new FormArray([]);
   modeEdit = false;
   bike: any;
+  maxImgSizeMb = 3;
 
   constructor(private activatedRoute: ActivatedRoute,
               private bikeService: BikesService,
@@ -47,7 +48,10 @@ export class BikeEditorComponent implements OnInit {
     });
 
     this.bikeForm = new FormGroup({
-      picture: new FormControl(null),
+      picture: new FormControl(null,[
+        Validators.required,
+        MaxSizeValidator(this.maxImgSizeMb * 1048576)
+      ] ),
       name: new FormControl('Test',[
         Validators.required,
         Validators.minLength(3),
@@ -109,7 +113,11 @@ export class BikeEditorComponent implements OnInit {
   }
 
   onSave(): void {
-    this.bikeService.createBike(this.bikeForm.value);
+    if (this.modeEdit) {
+      this.bikeService.updateBike({...this.bikeForm.value, id: this.bikeId});
+    } else {
+      this.bikeService.createBike(this.bikeForm.value);
+    }
     // this.router.navigate(['/admin/bikes']);
   }
 

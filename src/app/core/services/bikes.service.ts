@@ -75,6 +75,30 @@ export class BikesService {
   }
 
   createBike(bikeForm: any): any{
+    const formData = this.setupBike(bikeForm);
+    return this.http.post(this.url, formData).subscribe(
+      data => console.log(data),
+      err => console.log(err),
+      () => console.log('Sent successfully')
+    );
+  }
+
+  removeBike(id: number): any {
+    console.log('bike removed');
+    return this.http.delete(`${this.url}/${id}`).subscribe();
+  }
+
+  updateBike(bikeForm: any): any {
+    const formData = this.setupBike(bikeForm);
+    console.log('update form data', bikeForm);
+    return this.http.put(`${this.url}/${bikeForm.id}`, formData).subscribe(
+      data => console.log(data),
+      err => console.log(err),
+      () => console.log('Sent successfully')
+    );
+  }
+
+  setupBike(bikeForm: any): FormData {
     const flattenGear = [];
     for (const el of bikeForm.gear) {
       flattenGear.push(el.name);
@@ -84,9 +108,6 @@ export class BikesService {
     const formData: FormData = new FormData();
     bikeForm.picture ? bikeForm.picture[0] = null : 0;
     formData.append('picture', bikeForm.picture);
-
-    console.log('bike to sent', formData);
-
     formData.append('bike', new Blob([JSON.stringify(
       {
         name: bikeForm.name,
@@ -101,16 +122,7 @@ export class BikesService {
       type: 'application/json'
     }));
 
-    return this.http.post(this.url, formData, ).subscribe(
-      data => console.log(data),
-      err => console.log(err),
-      () => console.log('Sent successfully')
-    );
-  }
-
-  removeBike(id: number): any {
-    console.log('bike removed');
-    return this.http.delete(`${this.url}/${id}`).subscribe();
+    return formData;
   }
 
   setSearchForm(searchFormVal: any): void {
