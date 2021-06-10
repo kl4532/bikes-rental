@@ -43,10 +43,11 @@ export class OrderService {
     this.orderChange$.next(this.order);
   }
 
-  finalizeOrder(userDetails: any, order: Item[]): Observable<any> {
+  createOrder(userDetails: any, items: Item[]): Observable<any> {
     console.log('Order submitted');
     console.log('User details', userDetails);
-    console.log('Order details', order);
+    console.log('Order details', items);
+    const order = {items, user: userDetails};
     // http post request with reservation
     return of(null);
   }

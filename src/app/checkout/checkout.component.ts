@@ -45,7 +45,7 @@ export class CheckoutComponent implements OnInit {
 
   onOrderSubmit(): void {
     const userDetails = this.reservationForm?.value;
-    this.orderService.finalizeOrder(userDetails, this.order);
+    this.orderService.createOrder(userDetails, this.order);
     console.log('resForm', this.reservationForm?.value);
   }
 
