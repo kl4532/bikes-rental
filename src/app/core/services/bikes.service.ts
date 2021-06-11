@@ -11,7 +11,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 export class BikesService {
 
   mockUrl = 'assets/mockBikes.json';
-  url = `${this.baseUrl}/bikes`;
+  url = `${this.baseUrl}bikes`;
   searchForm: any;
   bikes: Bike[] | undefined;
   changesSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
