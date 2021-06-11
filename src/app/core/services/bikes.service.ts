@@ -1,6 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
+import {BehaviorSubject, Observable, Subject, throwError} from 'rxjs';
 import {catchError, map, take} from 'rxjs/operators';
 import {Bike} from '../models/bike.model';
 import {DomSanitizer} from "@angular/platform-browser";
@@ -14,6 +14,7 @@ export class BikesService {
   url = `${this.baseUrl}/bikes`;
   searchForm: any;
   bikes: Bike[] | undefined;
+  changesSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor(private http: HttpClient,
               private sanitizer: DomSanitizer,
@@ -85,7 +86,11 @@ export class BikesService {
 
   removeBike(id: number): any {
     console.log('bike removed');
-    return this.http.delete(`${this.url}/${id}`).subscribe();
+    return this.http.delete(`${this.url}/${id}`).subscribe(
+      data => console.log(data),
+      err => console.log(err),
+      () => this.changesSubject.next(null)
+    );
   }
 
   updateBike(bikeForm: any): any {
@@ -94,7 +99,7 @@ export class BikesService {
     return this.http.put(`${this.url}/${bikeForm.id}`, formData).subscribe(
       data => console.log(data),
       err => console.log(err),
-      () => console.log('Sent successfully')
+      () => this.changesSubject.next(null)
     );
   }
 

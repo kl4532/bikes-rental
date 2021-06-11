@@ -21,14 +21,17 @@ export class BikeListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'status', 'action'];
   bikes: Bike[] = [];
 
+  constructor(public bikeService: BikesService) {}
+
   ngOnInit(): void {
-    this.bikeService.bikes$.subscribe(bikes => {
-      this.dataSource = new MatTableDataSource(bikes);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+    this.bikeService.changesSubject.subscribe(() => {
+      this.bikeService.bikes$.subscribe(bikes => {
+        this.dataSource = new MatTableDataSource(bikes);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
     });
   }
-  constructor(public bikeService: BikesService) {}
 
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -37,10 +40,6 @@ export class BikeListComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-  }
-
-  edit(id: number): void {
-    console.log('edit', id);
   }
 
   remove(id: number): void {
