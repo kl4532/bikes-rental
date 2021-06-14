@@ -21,7 +21,10 @@ export class BasketComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.orderService.getOrderFromLocalStorage();
+    this.orderService.getOrderFromLocalStorage().then(
+      res => res,
+      rej => console.log(rej)
+    );
     this.orderService.orderChange$.subscribe(items => {
       this.items = items;
       this.totalPrice = this.orderService.getTotalPrice(items);

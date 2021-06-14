@@ -1,8 +1,11 @@
 import {Inject, Injectable} from '@angular/core';
 import {Item} from '../models/item.model';
-import {BehaviorSubject, Observable, of, Subject} from 'rxjs';
+import {BehaviorSubject, forkJoin, Observable, of} from 'rxjs';
 import {DomSanitizer} from "@angular/platform-browser";
 import {HttpClient} from "@angular/common/http";
+import {BikesService} from "./bikes.service";
+import {Bike} from "../models/bike.model";
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -18,33 +21,66 @@ export class OrderService {
 
   constructor(private sanitizer: DomSanitizer,
               private http: HttpClient,
-              @Inject('API_URL') private baseUrl: string) { }
+              private bikeService: BikesService,
+              @Inject('API_URL') private baseUrl: string) {
+  }
 
-  addToOrder(item: Item): void {
-    this.getOrderFromLocalStorage();
+  async addToOrder(item: Item): Promise<void> {
+    const lsOrder = await this.getOrderFromLocalStorage() || [];
     this.order.push(item);
-    this.ls.setItem('order', JSON.stringify(this.order));
+
+    const lsItem = {
+      bikeId: item.bike.id,
+      dateStart: item.dateStart,
+      dateEnd: item.dateEnd,
+      price: item.price
+    };
+    lsOrder.push(lsItem);
+
+    this.ls.setItem('order', JSON.stringify(lsOrder));
     this.orderChange$.next(this.order);
   }
 
   removeItemFromOrder(id: number): void {
     this.order = this.order.filter(item => item.bike.id !== id);
-    this.ls.setItem('order', JSON.stringify(this.order));
+    this.ls.setItem('order', JSON.stringify(this.convertOrderForLs(this.order)));
     this.orderChange$.next(this.order);
   }
 
-  getOrderFromLocalStorage(): void {
-    let savedOrder: Item[];
+  async getOrderFromLocalStorage(): Promise<any> {
+    let lsOrder: any;
     if (this.ls.order) {
       const strOrder = this.ls.getItem('order') || '';
-      savedOrder = JSON.parse(strOrder);
-      for (const item of savedOrder) {
-        const url = item.bike.picture.changingThisBreaksApplicationSecurity;
-        item.bike.picture = this.sanitizer.bypassSecurityTrustUrl(url);
-      }
-      this.order = savedOrder || [];
+      lsOrder = JSON.parse(strOrder);
+      this.order = await this.getFullOrder(lsOrder);
+      this.orderChange$.next(this.order);
     }
-    this.orderChange$.next(this.order);
+    return lsOrder;
+  }
+
+  convertOrderForLs(order: Item[]): any {
+    const lsOrder: any = [];
+    for (const item of order) {
+      const lsItem = {
+        bikeId: item.bike.id,
+        dateStart: item.dateStart,
+        dateEnd: item.dateEnd,
+        price: item.price
+      };
+      lsOrder.push(lsItem);
+    }
+    return lsOrder;
+  }
+
+  async getFullOrder(savedOrder: any): Promise<any> {
+    const obs = [];
+    for (let item of savedOrder) {
+        const o = this.bikeService.getBikeDetails(item.bikeId).pipe(map((bike: Bike) => {
+          return item = {...item, bike};
+        }));
+        obs.push(o);
+    }
+    return await forkJoin(obs).pipe(map(items => items.map(item => item))).toPromise();
   }
 
   createOrder(userDetails: any, items: Item[]): Observable<any> {

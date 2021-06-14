@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable, Subject, throwError} from 'rxjs';
-import {catchError, map, take} from 'rxjs/operators';
+import {catchError, map, take, tap} from 'rxjs/operators';
 import {Bike} from '../models/bike.model';
 import {DomSanitizer} from "@angular/platform-browser";
 
@@ -29,10 +29,10 @@ export class BikesService {
             bike.picture = this.sanitizer.bypassSecurityTrustUrl(imgUrl);
           }
         }
-        console.log('fetched bikes', data);
         this.bikes = data;
         return data;
       }),
+      tap(data => console.log('bikes fetched', data)),
       catchError(this.handleError)
     );
 

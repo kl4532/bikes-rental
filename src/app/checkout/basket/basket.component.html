@@ -1,6 +1,6 @@
 <div class="container">
   <p class="price price-header">Price</p>
-  <ul class="items-list">
+  <ul *ngIf="items" class="items-list">
     <li *ngFor="let item of items">
       <mat-divider></mat-divider>
       <div class="item">
