@@ -52,7 +52,7 @@ export class OrderService {
     if (this.ls.order) {
       const strOrder = this.ls.getItem('order') || '';
       lsOrder = JSON.parse(strOrder);
-      this.order = await this.getFullOrder(lsOrder);
+      this.order = await this.getFullOrder(lsOrder) || [];
       this.orderChange$.next(this.order);
     }
     return lsOrder;
