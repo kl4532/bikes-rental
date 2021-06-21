@@ -49,7 +49,6 @@ export class BikeEditorComponent implements OnInit {
 
     this.bikeForm = new FormGroup({
       picture: new FormControl(null,[
-        Validators.required,
         MaxSizeValidator(this.maxImgSizeMb * 1048576)
       ] ),
       name: new FormControl('Test',[
