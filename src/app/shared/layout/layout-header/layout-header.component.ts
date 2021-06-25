@@ -19,8 +19,7 @@ export class LayoutHeaderComponent implements OnInit {
   }
 
   logOut(): void {
-    this.authService.logout();
-    console.log('attempt to log out');
+    this.authService.logout(this.isAdmin);
   }
 
 }

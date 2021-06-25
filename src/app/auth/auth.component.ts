@@ -30,12 +30,8 @@ export class AuthComponent implements OnInit {
 
     if (this.adminAuth) {
       this.authService.loginAdmin(name, password).subscribe( (loggedIn: any) => {
-        console.log('Is Login Success: ' + loggedIn);
-        if (loggedIn) {
-          this.loginFailed = false;
-        } else {
-          this.loginFailed = true;
-        }
+        this.loginFailed = !loggedIn;
+        this.authService.isAdminLoggedIn.next(loggedIn);
       });
     } else {
       this.authService.loginUser(name, password)

@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 
-import {BehaviorSubject, Observable, of} from 'rxjs';
+import {BehaviorSubject, Observable, of, Subscription} from 'rxjs';
 import { tap, delay } from 'rxjs/operators';
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,10 @@ export class AuthService {
   // isUserLoggedIn = false;
   isAdminLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+  constructor(private http: HttpClient,
+              @Inject('API_URL') private baseUrl: string) {
+  }
 
   loginUser(userName: string, password: string): any {
     console.log(userName);
@@ -28,23 +33,16 @@ export class AuthService {
     );
   }
 
-  loginAdmin(name: string, password: string): Observable<any> {
-    // authenticate against admin table in backend
-    const isLogged = name === 'admin' && password === 'admin';
-    this.isAdminLoggedIn.next(isLogged);
-
-    return of(isLogged).pipe(
-      delay(1000),
-      tap(val => {
-        console.log("Admin Authentication is successful: " + val);
-      })
-    );
+  loginAdmin(name: string, password: string): any {
+    return this.http.post(`${this.baseUrl}admins/login`, {login: name, password});
   }
 
-  logout(): void {
-    this.isUserLoggedIn.next(false);
+  logout(isAdmin: boolean): void {
+    if (isAdmin) {
+      this.isAdminLoggedIn.next(false);
+    } else {
+      this.isUserLoggedIn.next(false);
+    }
     localStorage.removeItem('isUserLoggedIn');
   }
-
-  constructor() { }
 }
