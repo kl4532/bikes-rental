@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Bike} from '../../core/models/bike.model';
 import {BikesService} from '../../core/services/bikes.service';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {OrderService} from '../../core/services/order.service';
 
@@ -11,15 +11,15 @@ import {OrderService} from '../../core/services/order.service';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss']
 })
-export class BikeDetailComponent implements OnInit {
+export class BikeDetailComponent implements OnInit, OnDestroy{
 
-  bike$: Observable<Bike> | undefined;
   bike: any;
   rentForm: any;
   minDate = new Date();
   maxDate = new Date();
   totalPrice: any;
   rentalTime: string[] = [];
+  sub: Subscription | undefined;
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
@@ -30,7 +30,7 @@ export class BikeDetailComponent implements OnInit {
     // @ts-ignore
     const bikeId = +this.activatedRoute.snapshot.paramMap.get('id');
     console.log('bikeId', bikeId);
-    this.bikesService.getBikeDetails(bikeId).subscribe(bike => {
+    this.sub = this.bikesService.getBikeDetails(bikeId).subscribe(bike => {
       this.bike = bike;
       this.calcTotalPrice();
     });
@@ -79,4 +79,9 @@ export class BikeDetailComponent implements OnInit {
     this.makeOrder();
     this.router.navigate(['']);
   }
+
+  ngOnDestroy(): void {
+    this.sub?.unsubscribe();
+  }
+
 }

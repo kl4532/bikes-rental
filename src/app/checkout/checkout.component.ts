@@ -1,28 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {OrderService} from '../core/services/order.service';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Item} from "../core/models/item.model";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent implements OnInit, OnDestroy {
 
   loggedIn = false;
   reservationForm: any;
   order: Item[] = [];
   totalPrice: any;
   tabIndex = 0;
+  sub: Subscription | undefined;
+
   constructor(
     private orderService: OrderService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.orderService.orderChange$.subscribe(items => {
+    this.sub = this.orderService.orderChange$.subscribe(items => {
       this.order = items;
       this.totalPrice = this.orderService.getTotalPrice(items);
     });
@@ -47,6 +50,10 @@ export class CheckoutComponent implements OnInit {
     const userDetails = this.reservationForm?.value;
     this.orderService.createOrder(userDetails, this.order);
     console.log('resForm', this.reservationForm?.value);
+  }
+
+  ngOnDestroy(): void {
+    this.sub?.unsubscribe();
   }
 
   // onNextClick(): void {

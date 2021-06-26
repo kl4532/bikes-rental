@@ -37,6 +37,8 @@ export class HomeComponent implements OnInit {
     this.isSubmitted.next(this.searchForm.value);
   }
 
+
+
   calculateRange() {
     // TOFIX set date range dynamically from selected min + 14 days
     // this.maxDate = new Date(selected + (14 * 24 * 60 * 60 * 1000));
