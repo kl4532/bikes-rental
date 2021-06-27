@@ -6,6 +6,7 @@ import {Bike} from "../../core/models/bike.model";
 import { MaxSizeValidator } from '@angular-material-components/file-input';
 import {Observable, Subscription} from "rxjs";
 import {BikeFormFields} from "../../core/models/bikeFormFields.model";
+import {switchMap} from "rxjs/operators";
 
 @Component({
   selector: 'app-bike-editor',
@@ -15,7 +16,7 @@ import {BikeFormFields} from "../../core/models/bikeFormFields.model";
 export class BikeEditorComponent implements OnInit, OnDestroy {
 
   bikeId = 0;
-  bikeForm: FormGroup = new FormGroup({});
+  bikeForm: any;
   gear: FormArray = new FormArray([]);
   modeEdit = false;
   bike: any;
@@ -31,42 +32,43 @@ export class BikeEditorComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.formFields$ = this.bikeService.getBikeFormFields();
 
-    const arSub = this.activatedRoute.params.subscribe(params => {
-      const param = 'id';
-      this.bikeId = +params[param];
+    const sub = this.activatedRoute.params.pipe(
+      switchMap((params: any) => {
+        const param = 'id';
+        this.bikeId = +params[param];
 
-      this.bikeForm = new FormGroup({
-        picture: new FormControl(null,[
-          MaxSizeValidator(this.maxImgSizeMb * 1048576)
-        ] ),
-        name: new FormControl('Test',[
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(20)]),
-        description: new FormControl('test',[
-          Validators.required]),
-        price: new FormControl('10',[
-          Validators.required]),
-        type: new FormControl('road',[
-          Validators.required]),
-        size: new FormControl('medium',[
-          Validators.required]),
-        status: new FormControl('available',[
-          Validators.required]),
-        gear: this.formBuilder.array([])
-      });
+        this.bikeForm = new FormGroup({
+            picture: new FormControl(null, [
+              MaxSizeValidator(this.maxImgSizeMb * 1048576)
+            ]),
+            name: new FormControl('Test', [
+              Validators.required,
+              Validators.minLength(3),
+              Validators.maxLength(20)]),
+            description: new FormControl('test', [
+              Validators.required]),
+            price: new FormControl('10', [
+              Validators.required]),
+            type: new FormControl('road', [
+              Validators.required]),
+            size: new FormControl('medium', [
+              Validators.required]),
+            status: new FormControl('available', [
+              Validators.required]),
+            gear: this.formBuilder.array([])
+        });
 
-      this.modeEdit = !!this.bikeId;
-      if (this.modeEdit) {
-        const bdSub = this.bikeService.getBikeDetails(this.bikeId).subscribe((bike: Bike) => {
+        return this.bikeService.getBikeDetails(this.bikeId);
+        })
+      )
+      .subscribe((bike: Bike) => {
+        this.modeEdit = !!this.bikeId;
+        if (this.modeEdit) {
           this.bike = bike;
           this.setForm();
-        });
-        this.subscriptions.add(bdSub);
-      }
-
-    });
-    this.subscriptions.add(arSub);
+        }
+      });
+    this.subscriptions.add(sub);
   }
 
   setForm(): void {
