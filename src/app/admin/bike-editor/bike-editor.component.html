@@ -1,7 +1,7 @@
 <h2 *ngIf="!modeEdit">Add new bike</h2>
 <h2 *ngIf="modeEdit && bike">Edit <i>{{bike.name}}</i></h2>
 
-<form [formGroup]="bikeForm" *ngIf="bikeForm">
+<form [formGroup]="bikeForm" *ngIf="bikeForm && (formFields$ | async) as dropdowns">
   <mat-form-field appearance="standard">
     <ngx-mat-file-input formControlName="picture" [multiple]="false" [accept]="'image/png, image/jpeg'" [color]="'primary'">
     </ngx-mat-file-input>
@@ -28,19 +28,22 @@
 
   <mat-form-field appearance="standard">
     <mat-label>Type</mat-label>
-    <input matInput formControlName="type">
+    <mat-select formControlName="type">
+      <mat-option *ngFor="let type of dropdowns.type" [value]="type">{{type}}</mat-option>
+    </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="standard">
     <mat-label>Size</mat-label>
-    <input matInput formControlName="size">
+    <mat-select formControlName="size">
+      <mat-option *ngFor="let size of dropdowns.size" [value]="size">{{size}}</mat-option>
+    </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="standard">
     <mat-label>Status</mat-label>
     <mat-select formControlName="status">
-      <mat-option value="available">available</mat-option>
-      <mat-option value="in service">in service</mat-option>
+      <mat-option *ngFor="let status of dropdowns.status" [value]="status">{{status}}</mat-option>
     </mat-select>
   </mat-form-field>
 
@@ -68,4 +71,16 @@
   </div>
 
 </form>
+
+<!-- this works-->
+
+<!--<ul *ngIf="($formFields | async) as res">-->
+<!--  <li *ngFor="let type of res.type">{{type}}</li>-->
+<!--</ul>-->
+
+<!--this doesn't...-->
+
+<!--<ul *ngIf="(this.bikeService.getBikeFormFields() | async) as res">-->
+<!--  <li *ngFor="let type of res.type">{{type}}</li>-->
+<!--</ul>-->
 

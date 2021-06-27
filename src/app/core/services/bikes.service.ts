@@ -4,6 +4,7 @@ import {BehaviorSubject, Observable, Subject, throwError} from 'rxjs';
 import {catchError, map, take, tap} from 'rxjs/operators';
 import {Bike} from '../models/bike.model';
 import {DomSanitizer} from "@angular/platform-browser";
+import {BikeFormFields} from "../models/bikeFormFields.model";
 
 @Injectable({
   providedIn: 'root'
@@ -132,6 +133,12 @@ export class BikesService {
 
   setSearchForm(searchFormVal: any): void {
     this.searchForm = searchFormVal;
+  }
+
+  getBikeFormFields(): Observable<BikeFormFields> {
+    return this.http.get<BikeFormFields>(`${this.baseUrl}bike_details`).pipe(
+      catchError(this.handleError)
+    );
   }
 
   private handleError(err: any): Observable<never> {

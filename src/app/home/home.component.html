@@ -7,7 +7,7 @@
     <mat-form-field appearance="fill">
       <mat-label>Bike types</mat-label>
       <mat-select formControlName="bikeTypes" multiple>
-        <mat-option *ngFor="let bike of mockBikesTypes" [value]="bike">{{bike}}</mat-option>
+        <mat-option *ngFor="let type of (formFields$ | async)?.type" [value]="type">{{type}}</mat-option>
       </mat-select>
     </mat-form-field>
 

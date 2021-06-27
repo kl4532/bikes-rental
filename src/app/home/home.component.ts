@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {BikesService} from '../core/services/bikes.service';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {BikeFormFields} from "../core/models/bikeFormFields.model";
 
 @Component({
   selector: 'app-home',
@@ -17,10 +18,12 @@ export class HomeComponent implements OnInit {
   formSubmission$ = this.isSubmitted.asObservable();
 
   minDate = new Date();
+  formFields$: Observable<BikeFormFields> | undefined;
 
   constructor(private bikeService: BikesService) { }
 
   ngOnInit(): void {
+    this.formFields$ = this.bikeService.getBikeFormFields();
     this.minDate = new Date();
     // this.maxDate = new Date(new Date().getTime() + (maxPeriod * 24 * 60 * 60 * 1000));
 

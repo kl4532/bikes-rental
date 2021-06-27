@@ -4,7 +4,8 @@ import {BikesService} from "../../core/services/bikes.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Bike} from "../../core/models/bike.model";
 import { MaxSizeValidator } from '@angular-material-components/file-input';
-import {Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
+import {BikeFormFields} from "../../core/models/bikeFormFields.model";
 
 @Component({
   selector: 'app-bike-editor',
@@ -20,13 +21,16 @@ export class BikeEditorComponent implements OnInit, OnDestroy {
   bike: any;
   maxImgSizeMb = 3;
   subscriptions = new Subscription();
+  formFields$: Observable<BikeFormFields> | undefined;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private bikeService: BikesService,
+              public bikeService: BikesService,
               private router: Router,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
+    this.formFields$ = this.bikeService.getBikeFormFields();
+
     const arSub = this.activatedRoute.params.subscribe(params => {
       const param = 'id';
       this.bikeId = +params[param];
@@ -45,7 +49,7 @@ export class BikeEditorComponent implements OnInit, OnDestroy {
           Validators.required]),
         type: new FormControl('road',[
           Validators.required]),
-        size: new FormControl('M',[
+        size: new FormControl('medium',[
           Validators.required]),
         status: new FormControl('available',[
           Validators.required]),
