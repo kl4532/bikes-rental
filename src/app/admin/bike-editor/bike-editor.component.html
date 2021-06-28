@@ -1,4 +1,4 @@
-<h2 *ngIf="!modeEdit">Add new bike</h2>
+<h2 *ngIf="!modeEdit" >Add new bike</h2>
 <h2 *ngIf="modeEdit && bike">Edit <i>{{bike.name}}</i></h2>
 
 <form [formGroup]="bikeForm" *ngIf="bikeForm && (formFields$ | async) as dropdowns">
@@ -47,8 +47,7 @@
     </mat-select>
   </mat-form-field>
 
-  <!--  Ingredients formArray-->
-  <div class="ingredient-header">
+  <div>
     <h4>Gear</h4>
     <button mat-mini-fab color="primary" type="button" (click)="addItem('')"><mat-icon>add</mat-icon></button>
   </div>
@@ -80,7 +79,7 @@
 
 <!--this doesn't...-->
 
-<!--<ul *ngIf="(this.bikeService.getBikeFormFields() | async) as res">-->
+<!--<ul *ngIf="(bikeService.getBikeFormFields() | async) as res">-->
 <!--  <li *ngFor="let type of res.type">{{type}}</li>-->
 <!--</ul>-->
 
