@@ -20,16 +20,21 @@ export class BikeDetailComponent implements OnInit, OnDestroy{
   totalPrice: any;
   rentalTime: string[] = [];
   sub: Subscription | undefined;
+  validators: any = {};
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
               private bikesService: BikesService,
-              private orderService: OrderService) { }
+              private orderService: OrderService) {
+    this.validators = {
+      isInBasket: false,
+      dateTime: false
+    };
+  }
 
   ngOnInit(): void {
     // @ts-ignore
     const bikeId = +this.activatedRoute.snapshot.paramMap.get('id');
-    console.log('bikeId', bikeId);
     this.sub = this.bikesService.getBikeDetails(bikeId).subscribe(bike => {
       this.bike = bike;
       this.calcTotalPrice();
@@ -42,9 +47,10 @@ export class BikeDetailComponent implements OnInit, OnDestroy{
     this.rentForm = new FormGroup({
       dateStart: new FormControl(this.bikesService.searchForm?.dateStart || this.minDate, Validators.required),
       dateEnd: new FormControl(this.bikesService.searchForm?.dateEnd || this.minDate, Validators.required),
-      price: new FormControl('')
+      price: new FormControl(''),
+      timeStart: new FormControl('9.00', Validators.required),
+      timeEnd: new FormControl('18.00', Validators.required)
     });
-
   }
 
   fillTime(min: number, max: number, step: number): void {
@@ -65,19 +71,37 @@ export class BikeDetailComponent implements OnInit, OnDestroy{
     this.rentForm.patchValue({price: this.totalPrice});
   }
 
-  makeOrder() {
-    const item = {...this.rentForm.value, bike: this.bike};
-    this.orderService.addToOrder(item);
+  async addItemToOrder(): Promise<boolean> {
+    const dates = this.mergeDateTime();
+    if (!dates) {
+      this.validators.dateTime = true;
+      return false;
+    }
+    const item = {bike: this.bike, ...dates,  price: this.rentForm.value.price,};
+    const orderAdded = await this.orderService.addToOrder(item);
+    if (!orderAdded) {
+      this.validators.isInBasket = true;
+      return false;
+    }
+    return true ;
   }
 
-  onSubmit(): void{
-    this.makeOrder();
-    this.router.navigate(['checkout']);
+  mergeDateTime(): any {
+    const timeStart = this.rentForm.value.timeStart.split('.');
+    const timeEnd = this.rentForm.value.timeEnd.split('.');
+
+    const dateStart = this.rentForm.value.dateStart.setHours(timeStart[0], timeStart[1], 0);
+    const dateEnd = this.rentForm.value.dateEnd.setHours(timeEnd[0], timeEnd[1], 0);
+    if (dateStart > dateEnd) {
+      return false;
+    }
+    return {dateStart: new Date(dateStart), dateEnd: new Date(dateEnd)};
   }
 
-  addToOrderList(): void {
-    this.makeOrder();
-    this.router.navigate(['']);
+  async onSubmit(destinationComponent: string): Promise<void>{
+    if (await this.addItemToOrder()) {
+      await this.router.navigate([destinationComponent]);
+    }
   }
 
   ngOnDestroy(): void {

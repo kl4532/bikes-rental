@@ -25,8 +25,14 @@ export class OrderService {
               @Inject('API_URL') private baseUrl: string) {
   }
 
-  async addToOrder(item: Item): Promise<void> {
+  async addToOrder(item: Item): Promise<boolean> {
     const lsOrder = await this.getOrderFromLocalStorage() || [];
+
+    const includes = this.order.find((old) => old.bike.id === item.bike.id);
+
+    if (includes) {
+      return false;
+    }
     this.order.push(item);
 
     const lsItem = {
@@ -39,6 +45,7 @@ export class OrderService {
 
     this.ls.setItem('order', JSON.stringify(lsOrder));
     this.orderChange$.next(this.order);
+    return true;
   }
 
   removeItemFromOrder(id: number): void {

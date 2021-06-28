@@ -10,7 +10,7 @@
   </div>
 
   <div class="bike-form">
-    <form action="" [formGroup]="rentForm" (ngSubmit)="onSubmit()">
+    <form action="" [formGroup]="rentForm" (ngSubmit)="onSubmit('checkout')">
       <mat-label>Reservation</mat-label>
       <mat-divider></mat-divider>
       <div class="dates">
@@ -23,9 +23,9 @@
 
         <mat-form-field appearance="fill" class="time">
           <mat-label>Time</mat-label>
-          <select matNativeControl required>
-            <option *ngFor="let h of rentalTime" value="h">{{h}}</option>
-          </select>
+          <mat-select formControlName="timeStart">
+            <mat-option *ngFor="let h of rentalTime" [value]="h">{{h}}</mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
 
@@ -40,19 +40,23 @@
 
         <mat-form-field appearance="fill" class="time">
           <mat-label>Time</mat-label>
-          <select matNativeControl required>
-            <option *ngFor="let h of rentalTime" value="h">{{h}}</option>
-          </select>
+          <mat-select formControlName="timeEnd">
+            <mat-option *ngFor="let h of rentalTime" [value]="h">{{h}}</mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
-<!--      Validation messages here!-->
       <div class="payment">
         <h2>Total ${{totalPrice}}</h2>
       </div>
       <div class="buttons">
         <button mat-raised-button color="primary" type="submit">Order now</button>
-        <button mat-raised-button color="secondary" (click)="addToOrderList()">Add to order list</button>
+        <button mat-raised-button color="secondary" type="button" (click)="onSubmit('')">Add to order list</button>
       </div>
+
+      <!--      Validation messages here!-->
+      <mat-error *ngIf="validators.isInBasket">This bike is already in basket!</mat-error>
+      <mat-error *ngIf="validators.dateTime">Date or time range is not correct!</mat-error>
+
     </form>
   </div>
 </div>
